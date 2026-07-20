@@ -8,6 +8,7 @@ import Packages from '../components/Packages.astro';
 import ComboTV from '../components/ComboTV.astro';
 import Process from '../components/Process.astro';
 import Coverage from '../components/Coverage.astro';
+import FAQ from '../components/FAQ.astro';
 
 export function getStaticPaths() {
   return getActiveProvinces().map((p) => ({
@@ -25,4 +26,5 @@ const { province } = Astro.props;
   <ComboTV province={province} />
   <Process />
   <Coverage province={province} />
+  <FAQ province={province} />
 </ProvinceLayout>

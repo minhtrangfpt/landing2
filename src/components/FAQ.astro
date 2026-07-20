@@ -1,0 +1,40 @@
+---
+import { faqs } from '../data/faq';
+import { site } from '../config/site';
+import type { Province } from '../config/provinces';
+interface Props { province: Province; }
+const { province } = Astro.props;
+---
+<section class="section" id="faq" aria-labelledby="faq-title">
+  <div class="container container--narrow">
+    <div class="section__head">
+      <h2 id="faq-title">Câu hỏi thường gặp khi lắp mạng FPT tại {province.name}</h2>
+      <p>Còn thắc mắc? Gọi <a href={`tel:${site.phoneRaw}`}>{site.phoneDisplay}</a> để được giải đáp ngay.</p>
+    </div>
+    <div class="faqs">
+      {faqs.map((f, i) => (
+        <details class="card faq" open={i === 0}>
+          <summary class="faq__q">
+            <span>{f.q}</span>
+            <span class="faq__icon" aria-hidden="true"></span>
+          </summary>
+          <p class="faq__a">{f.a}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.container--narrow { max-width: 820px; }
+.faqs { display: flex; flex-direction: column; gap: 12px; }
+.faq { padding: 0 18px; }
+.faq__q { list-style: none; cursor: pointer; padding: 16px 0; display: flex; justify-content: space-between; gap: 12px; align-items: center; font-weight: 700; color: var(--navy); }
+.faq__q::-webkit-details-marker { display: none; }
+.faq__icon { position: relative; width: 16px; height: 16px; flex: none; }
+.faq__icon::before, .faq__icon::after { content: ''; position: absolute; background: var(--orange); border-radius: 2px; }
+.faq__icon::before { top: 7px; left: 0; width: 16px; height: 2px; }
+.faq__icon::after { left: 7px; top: 0; width: 2px; height: 16px; transition: transform .2s ease; }
+.faq[open] .faq__icon::after { transform: scaleY(0); }
+.faq__a { padding: 0 0 16px; color: var(--muted); }
+</style>
