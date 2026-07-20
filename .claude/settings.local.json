@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C \"C:\\\\Users\\\\ptkie\\\\OneDrive\\\\Documents\\\\Web\\\\LP2\" status)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git -c user.name=ptkie -c user.email=ptkie@local commit -m 'docs: add design spec for FPT internet multi-province landing page *)",
+      "WebSearch",
+      "Bash(git -c user.name=ptkie -c user.email=ptkie@local commit -m 'docs: add implementation plan for FPT multi-province landing page *)",
+      "Bash(bash __TRACKED_VAR__/scripts/task-brief docs/superpowers/plans/2026-07-20-fpt-internet-landing.md 1)",
+      "Bash(npm install *)",
+      "Bash(npm list *)",
+      "Bash(npx astro *)",
+      "Bash(npx vitest *)",
+      "Bash(npm run *)",
+      "Bash(git commit *)",
+      "Bash(git config *)"
+    ]
+  }
+}
