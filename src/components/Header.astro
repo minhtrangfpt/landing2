@@ -1,0 +1,32 @@
+---
+import { site } from '../config/site';
+import type { Province } from '../config/provinces';
+interface Props { province: Province; }
+const { province } = Astro.props;
+---
+<header class="hdr">
+  <div class="container hdr__row">
+    <a href="/" class="hdr__brand" aria-label={`${site.brand} ${province.name}`}>
+      <span class="hdr__logo">FPT</span>
+      <span class="hdr__brandtext">{site.brand} {province.name}</span>
+    </a>
+    <div class="hdr__cta">
+      <a class="btn btn--zalo" href={site.zalo} target="_blank" rel="noopener">Chat Zalo</a>
+      <a class="btn btn--call" href={`tel:${site.phoneRaw}`}>Gọi {site.phoneDisplay}</a>
+    </div>
+  </div>
+</header>
+
+<style>
+.hdr { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.hdr__row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 20px; }
+.hdr__brand { display: flex; align-items: center; gap: 10px; font-weight: 800; color: var(--navy); }
+.hdr__logo { background: var(--orange); color: #fff; padding: 6px 10px; border-radius: 8px; font-weight: 900; letter-spacing: .04em; }
+.hdr__brandtext { font-size: 1rem; }
+.hdr__cta { display: flex; gap: 8px; }
+.hdr__cta .btn { padding: 10px 16px; font-size: .92rem; }
+@media (max-width: 560px) {
+  .hdr__brandtext { display: none; }
+  .hdr__cta .btn--zalo { display: none; }
+}
+</style>
