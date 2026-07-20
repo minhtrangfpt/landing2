@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b2c5d"/>
+      <stop offset="1" stop-color="#1a4a8a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <rect x="60" y="60" width="150" height="64" rx="14" fill="#ed7d31"/>
+  <text x="135" y="104" font-family="Arial, sans-serif" font-size="34" font-weight="900" fill="#fff" text-anchor="middle">FPT</text>
+  <text x="60" y="300" font-family="Arial, sans-serif" font-size="74" font-weight="900" fill="#fff">Lắp mạng FPT</text>
+  <text x="60" y="384" font-family="Arial, sans-serif" font-size="50" font-weight="700" fill="#ed7d31">Wi-Fi 6 miễn phí — lắp trong ngày</text>
+  <text x="60" y="500" font-family="Arial, sans-serif" font-size="46" font-weight="800" fill="#fff">📞 0931.50.55.56</text>
+</svg>
