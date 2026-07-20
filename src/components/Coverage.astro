@@ -1,0 +1,21 @@
+---
+import type { Province } from '../config/provinces';
+interface Props { province: Province; }
+const { province } = Astro.props;
+---
+<section class="section section--soft" id="khu-vuc" aria-labelledby="coverage-title">
+  <div class="container">
+    <div class="section__head">
+      <h2 id="coverage-title">Khu vực lắp mạng FPT tại {province.name}</h2>
+      <p>Chúng tôi phục vụ lắp đặt trên toàn bộ các quận/huyện tại {province.name}.</p>
+    </div>
+    <ul class="districts">
+      {province.districts.map((d) => <li class="districts__item">{d}</li>)}
+    </ul>
+  </div>
+</section>
+
+<style>
+.districts { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+.districts__item { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; font-weight: 600; color: var(--navy); }
+</style>
