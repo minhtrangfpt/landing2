@@ -1,0 +1,44 @@
+---
+import { site } from '../config/site';
+import type { Province } from '../config/provinces';
+interface Props { province: Province; }
+const { province } = Astro.props;
+---
+<section class="section cta-band" id="dang-ky" aria-labelledby="cta-title">
+  <div class="container cta-band__inner">
+    <div>
+      <h2 id="cta-title">Đăng ký lắp mạng FPT tại {province.name} ngay hôm nay</h2>
+      <p>Để lại thông tin hoặc gọi trực tiếp — kỹ thuật viên sẽ liên hệ tư vấn và lắp trong ngày.</p>
+    </div>
+    <form class="cta-form" id="leadForm">
+      <input class="cta-form__input" type="text" name="name" placeholder="Họ và tên" required autocomplete="name" />
+      <input class="cta-form__input" type="tel" name="phone" placeholder="Số điện thoại" required autocomplete="tel" />
+      <button class="btn btn--call" type="submit">Gửi đăng ký qua Zalo</button>
+    </form>
+    <div class="cta-band__direct">
+      <a class="btn btn--call btn--lg" href={`tel:${site.phoneRaw}`}>📞 {site.phoneDisplay}</a>
+      <a class="btn btn--zalo btn--lg" href={site.zalo} target="_blank" rel="noopener">💬 Zalo</a>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  document.getElementById('leadForm')?.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var name = this.name.value.trim();
+    var phone = this.phone.value.trim();
+    var msg = encodeURIComponent('Tôi muốn đăng ký lắp mạng FPT. Tên: ' + name + ', SĐT: ' + phone);
+    window.open('https://zalo.me/0931505556?src=' + msg, '_blank');
+  });
+</script>
+
+<style>
+.cta-band { background: linear-gradient(135deg, var(--orange), var(--orange-dark)); color: #fff; }
+.cta-band__inner { display: grid; gap: 20px; }
+.cta-band h2 { color: #fff; }
+.cta-band p { color: #fff5ee; }
+.cta-form { display: flex; flex-wrap: wrap; gap: 10px; }
+.cta-form__input { flex: 1; min-width: 200px; padding: 14px 16px; border-radius: 999px; border: 0; font-size: 1rem; }
+.cta-band__direct { display: flex; flex-wrap: wrap; gap: 12px; }
+.cta-band__direct .btn--zalo { background: #fff; color: var(--navy); }
+</style>

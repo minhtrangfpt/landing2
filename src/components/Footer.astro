@@ -1,0 +1,45 @@
+---
+import { site } from '../config/site';
+import { getActiveProvinces } from '../config/provinces';
+import type { Province } from '../config/provinces';
+interface Props { province: Province; }
+const { province } = Astro.props;
+const provinces = getActiveProvinces();
+const year = new Date().getFullYear();
+---
+<footer class="footer">
+  <div class="container footer__grid">
+    <div>
+      <div class="footer__brand"><span class="hdr__logo">FPT</span> {site.brand}</div>
+      <p>Dịch vụ đăng ký, lắp đặt internet FPT và combo truyền hình FPT Play tại {province.name}.</p>
+    </div>
+    <div>
+      <h3>Liên hệ</h3>
+      <p><a href={`tel:${site.phoneRaw}`}>📞 {site.phoneDisplay}</a></p>
+      <p><a href={site.zalo} target="_blank" rel="noopener">💬 Chat Zalo</a></p>
+    </div>
+    {provinces.length > 1 && (
+      <div>
+        <h3>Khu vực phục vụ</h3>
+        <ul>
+          {provinces.map((p) => <li><a href={`/${p.slug}/`}>{p.name}</a></li>)}
+        </ul>
+      </div>
+    )}
+  </div>
+  <div class="footer__bar">
+    <div class="container">© {year} {site.brand}. Nội dung mang tính tham khảo, giá cước vui lòng xác nhận khi đăng ký.</div>
+  </div>
+</footer>
+
+<style>
+.footer { background: var(--navy); color: #cdd8ea; padding: 48px 0 0; }
+.footer__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding-bottom: 32px; }
+.footer h3 { color: #fff; font-size: 1rem; margin-bottom: 10px; }
+.footer a { color: #fff; }
+.footer a:hover { color: var(--orange); }
+.footer__brand { display: flex; align-items: center; gap: 8px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+.footer__bar { border-top: 1px solid rgba(255,255,255,.12); padding: 14px 0; font-size: .85rem; }
+.hdr__logo { background: var(--orange); color: #fff; padding: 6px 10px; border-radius: 8px; font-weight: 900; }
+@media (max-width: 720px) { .footer__grid { grid-template-columns: 1fr; } }
+</style>
