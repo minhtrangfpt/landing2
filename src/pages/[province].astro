@@ -2,6 +2,7 @@
 import ProvinceLayout from '../layouts/ProvinceLayout.astro';
 import { getActiveProvinces } from '../config/provinces';
 import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
 
 export function getStaticPaths() {
   return getActiveProvinces().map((p) => ({
@@ -13,6 +14,7 @@ const { province } = Astro.props;
 ---
 <ProvinceLayout province={province}>
   <Header province={province} />
+  <Hero province={province} />
   <main class="container section">
     <p>Components go here.</p>
   </main>
