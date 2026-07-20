@@ -1,0 +1,54 @@
+---
+import { getPackagesByCategory } from '../data/packages';
+import { formatVnd } from '../lib/format';
+import { site } from '../config/site';
+import type { Province } from '../config/provinces';
+interface Props { province: Province; }
+const { province } = Astro.props;
+const internet = getPackagesByCategory('internet');
+---
+<section class="section" id="goi-cuoc" aria-labelledby="packages-title">
+  <div class="container">
+    <div class="section__head">
+      <h2 id="packages-title">Bảng giá các gói internet FPT tại {province.name}</h2>
+      <p>Giá đã bao gồm VAT. Miễn phí modem Wi-Fi 6. <em>(Giá tham khảo, vui lòng xác nhận khi đăng ký.)</em></p>
+    </div>
+    <div class="pkg-grid">
+      {internet.map((p) => (
+        <article class:list={['card', 'pkg', { 'pkg--hl': p.highlight }]}>
+          {p.badge && <span class="badge pkg__badge">{p.badge}</span>}
+          <h3>{p.name}</h3>
+          <p class="pkg__tag">{p.tagline}</p>
+          {p.speed && <p class="pkg__speed">{p.speed}</p>}
+          <div class="pkg__price">
+            <span class="pkg__amount">{formatVnd(p.priceMonthly)}</span>
+            {p.originalPrice && <span class="pkg__old">{formatVnd(p.originalPrice)}</span>}
+            <span class="pkg__unit">/tháng</span>
+          </div>
+          <ul class="pkg__features">
+            {p.features.map((f) => <li>✓ {f}</li>)}
+          </ul>
+          <a class="btn btn--call pkg__cta" href={`tel:${site.phoneRaw}`}>Đăng ký {p.name}</a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.pkg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.pkg { padding: 24px; display: flex; flex-direction: column; position: relative; }
+.pkg--hl { border: 2px solid var(--orange); }
+.pkg__badge { position: absolute; top: 14px; right: 14px; }
+.pkg__tag { color: var(--muted); font-size: .92rem; }
+.pkg__speed { font-weight: 700; color: var(--navy-light); margin: 4px 0; }
+.pkg__price { margin: 14px 0; }
+.pkg__amount { font-size: 1.7rem; font-weight: 900; color: var(--orange); }
+.pkg__old { text-decoration: line-through; color: var(--muted); font-size: .9rem; margin-left: 8px; }
+.pkg__unit { color: var(--muted); }
+.pkg__features { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; flex: 1; }
+.pkg__features li { font-size: .93rem; }
+.pkg__cta { width: 100%; }
+@media (max-width: 900px) { .pkg-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .pkg-grid { grid-template-columns: 1fr; } }
+</style>

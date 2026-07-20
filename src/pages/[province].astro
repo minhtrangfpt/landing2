@@ -4,6 +4,8 @@ import { getActiveProvinces } from '../config/provinces';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import Benefits from '../components/Benefits.astro';
+import Packages from '../components/Packages.astro';
+import ComboTV from '../components/ComboTV.astro';
 import Process from '../components/Process.astro';
 import Coverage from '../components/Coverage.astro';
 
@@ -19,6 +21,8 @@ const { province } = Astro.props;
   <Header province={province} />
   <Hero province={province} />
   <Benefits />
+  <Packages province={province} />
+  <ComboTV province={province} />
   <Process />
   <Coverage province={province} />
 </ProvinceLayout>
