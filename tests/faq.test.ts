@@ -1,0 +1,15 @@
+import { describe, it, expect } from 'vitest';
+import { faqs } from '../src/data/faq';
+
+describe('faqs', () => {
+  it('has 6-10 items', () => {
+    expect(faqs.length).toBeGreaterThanOrEqual(6);
+    expect(faqs.length).toBeLessThanOrEqual(10);
+  });
+  it('every item has a question and a non-empty answer', () => {
+    for (const f of faqs) {
+      expect(f.q.length).toBeGreaterThan(5);
+      expect(f.a.length).toBeGreaterThan(10);
+    }
+  });
+});
