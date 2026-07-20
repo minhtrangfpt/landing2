@@ -1,0 +1,5 @@
+---
+import { getDefaultProvince } from '../config/provinces';
+const target = `/${getDefaultProvince().slug}/`;
+return Astro.redirect(target, 301);
+---
