@@ -29,7 +29,7 @@ describe('seo builders', () => {
     expect(JSON.stringify(s)).toContain('FPT');
   });
   it('faqSchema is FAQPage with matching item count', () => {
-    const s = faqSchema();
+    const s = faqSchema(hp);
     expect(s['@type']).toBe('FAQPage');
     expect(s.mainEntity.length).toBeGreaterThan(0);
   });

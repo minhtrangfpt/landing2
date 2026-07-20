@@ -10,7 +10,7 @@ const { province } = Astro.props;
       <h2 id="cta-title">Đăng ký lắp mạng FPT tại {province.name} ngay hôm nay</h2>
       <p>Để lại thông tin hoặc gọi trực tiếp — kỹ thuật viên sẽ liên hệ tư vấn và lắp trong ngày.</p>
     </div>
-    <form class="cta-form" id="leadForm">
+    <form class="cta-form" id="leadForm" data-zalo={site.zalo}>
       <input class="cta-form__input" type="text" name="name" placeholder="Họ và tên" required autocomplete="name" />
       <input class="cta-form__input" type="tel" name="phone" placeholder="Số điện thoại" required autocomplete="tel" />
       <button class="btn btn--call" type="submit">Gửi đăng ký qua Zalo</button>
@@ -28,7 +28,8 @@ const { province } = Astro.props;
     var name = this.name.value.trim();
     var phone = this.phone.value.trim();
     var msg = encodeURIComponent('Tôi muốn đăng ký lắp mạng FPT. Tên: ' + name + ', SĐT: ' + phone);
-    window.open('https://zalo.me/0931505556?src=' + msg, '_blank');
+    var zalo = document.getElementById('leadForm').dataset.zalo;
+    window.open(zalo + '?src=' + msg, '_blank');
   });
 </script>
 

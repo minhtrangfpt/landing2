@@ -1,6 +1,6 @@
 import { site } from '../config/site';
 import type { Province } from '../config/provinces';
-import { faqs } from '../data/faq';
+import { getFaqs } from '../data/faq';
 
 export function canonicalUrl(province: Province): string {
   return `${site.siteUrl}/${province.slug}/`;
@@ -39,11 +39,11 @@ export function serviceSchema(province: Province) {
   };
 }
 
-export function faqSchema() {
+export function faqSchema(province: Province) {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqs.map((f) => ({
+    mainEntity: getFaqs(province).map((f) => ({
       '@type': 'Question',
       name: f.q,
       acceptedAnswer: { '@type': 'Answer', text: f.a },

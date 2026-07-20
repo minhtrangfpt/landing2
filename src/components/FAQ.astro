@@ -1,9 +1,10 @@
 ---
-import { faqs } from '../data/faq';
+import { getFaqs } from '../data/faq';
 import { site } from '../config/site';
 import type { Province } from '../config/provinces';
 interface Props { province: Province; }
 const { province } = Astro.props;
+const faqs = getFaqs(province);
 ---
 <section class="section" id="faq" aria-labelledby="faq-title">
   <div class="container container--narrow">

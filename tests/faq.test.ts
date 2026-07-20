@@ -1,5 +1,8 @@
 import { describe, it, expect } from 'vitest';
-import { faqs } from '../src/data/faq';
+import { getFaqs } from '../src/data/faq';
+import { getProvince } from '../src/config/provinces';
+
+const faqs = getFaqs(getProvince('haiphong'));
 
 describe('faqs', () => {
   it('has 6-10 items', () => {
