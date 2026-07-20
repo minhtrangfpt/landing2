@@ -1,0 +1,17 @@
+---
+import ProvinceLayout from '../layouts/ProvinceLayout.astro';
+import { getActiveProvinces } from '../config/provinces';
+
+export function getStaticPaths() {
+  return getActiveProvinces().map((p) => ({
+    params: { province: p.slug },
+    props: { province: p },
+  }));
+}
+const { province } = Astro.props;
+---
+<ProvinceLayout province={province}>
+  <main class="container section">
+    <p>Components go here.</p>
+  </main>
+</ProvinceLayout>

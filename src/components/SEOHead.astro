@@ -1,0 +1,52 @@
+---
+import type { Province } from '../config/provinces';
+import { site } from '../config/site';
+import {
+  canonicalUrl,
+  localBusinessSchema,
+  serviceSchema,
+  faqSchema,
+  breadcrumbSchema,
+  organizationSchema,
+} from '../lib/seo';
+
+interface Props { province: Province; }
+const { province } = Astro.props;
+const canonical = canonicalUrl(province);
+const ogImage = `${site.siteUrl}/og-default.svg`;
+const schemas = [
+  organizationSchema(),
+  localBusinessSchema(province),
+  serviceSchema(province),
+  faqSchema(),
+  breadcrumbSchema(province),
+];
+---
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>{province.metaTitle}</title>
+<meta name="description" content={province.metaDescription} />
+<link rel="canonical" href={canonical} />
+<meta name="robots" content="index, follow, max-image-preview:large" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="vi_VN" />
+<meta property="og:site_name" content={site.brand} />
+<meta property="og:title" content={province.metaTitle} />
+<meta property="og:description" content={province.metaDescription} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={province.metaTitle} />
+<meta name="twitter:description" content={province.metaDescription} />
+<meta name="twitter:image" content={ogImage} />
+
+<meta name="theme-color" content="#ed7d31" />
+{
+  schemas.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))
+}

@@ -1,0 +1,16 @@
+---
+import '../styles/global.css';
+import SEOHead from '../components/SEOHead.astro';
+import type { Province } from '../config/provinces';
+interface Props { province: Province; }
+const { province } = Astro.props;
+---
+<!doctype html>
+<html lang="vi">
+  <head>
+    <SEOHead province={province} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
