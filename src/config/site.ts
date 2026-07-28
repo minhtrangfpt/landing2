@@ -1,9 +1,21 @@
+const SITE_URL =
+  (import.meta.env.SITE_URL as string) ||
+  (typeof process !== 'undefined' && process.env && process.env.SITE_URL) ||
+  'https://mangfpt.vn';
+
 export const site = {
   brand: 'Mạng FPT',
-  /** VERIFY: set to the real registered domain before launch. */
-  siteUrl: 'https://mangfpt.vn',
+  /** Per-deploy via the SITE_URL env var; fallback is the target domain (VERIFY before launch). */
+  siteUrl: SITE_URL,
   phoneDisplay: '0931.50.55.56',
   phoneRaw: '0931505556',
   zalo: 'https://zalo.me/0931505556',
   defaultProvince: 'haiphong',
 } as const;
+
+/** Analytics IDs — set via env vars. Inactive until configured. */
+export const analytics = {
+  ga4Id: (import.meta.env.PUBLIC_GA4_ID as string) || '',
+  adsId: (import.meta.env.PUBLIC_ADS_ID as string) || '',
+  adsLabel: (import.meta.env.PUBLIC_ADS_LABEL as string) || '',
+};

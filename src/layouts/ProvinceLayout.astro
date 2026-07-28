@@ -1,9 +1,11 @@
 ---
 import '../styles/global.css';
 import SEOHead from '../components/SEOHead.astro';
+import { analytics } from '../config/site';
 import type { Province } from '../config/provinces';
 interface Props { province: Province; }
 const { province } = Astro.props;
+const { ga4Id } = analytics;
 ---
 <!doctype html>
 <html lang="vi">
@@ -12,6 +14,12 @@ const { province } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    {ga4Id && (
+      <>
+        <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${ga4Id}`}></script>
+        <script is:inline set:html={`window.dataLayer=window.dataLayer||[];window.gtag=function(){dataLayer.push(arguments);};gtag('js',new Date());gtag('config','${ga4Id}');`}></script>
+      </>
+    )}
   </head>
   <body>
     <slot />

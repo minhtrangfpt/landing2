@@ -1,8 +1,9 @@
 ---
-import { site } from '../config/site';
+import { site, analytics } from '../config/site';
 import type { Province } from '../config/provinces';
 interface Props { province: Province; }
 const { province } = Astro.props;
+const { adsId, adsLabel } = analytics;
 ---
 <section class="section cta-band" id="dang-ky" aria-labelledby="cta-title">
   <div class="container cta-band__inner">
@@ -10,7 +11,7 @@ const { province } = Astro.props;
       <h2 id="cta-title">Đăng ký lắp mạng FPT tại {province.name} ngay hôm nay</h2>
       <p>Để lại thông tin hoặc gọi trực tiếp — kỹ thuật viên sẽ liên hệ tư vấn và lắp trong ngày.</p>
     </div>
-    <form class="cta-form" id="leadForm" data-zalo={site.zalo}>
+    <form class="cta-form" id="leadForm" data-zalo={site.zalo} data-ads={adsId} data-ads-label={adsLabel}>
       <input class="cta-form__input" type="text" name="name" placeholder="Họ và tên" required autocomplete="name" />
       <input class="cta-form__input" type="tel" name="phone" placeholder="Số điện thoại" required autocomplete="tel" />
       <button class="btn btn--call" type="submit">Gửi đăng ký qua Zalo</button>
@@ -25,11 +26,18 @@ const { province } = Astro.props;
 <script is:inline>
   document.getElementById('leadForm')?.addEventListener('submit', function (e) {
     e.preventDefault();
-    var name = this.name.value.trim();
-    var phone = this.phone.value.trim();
+    var f = document.getElementById('leadForm');
+    var name = f.name.value.trim();
+    var phone = f.phone.value.trim();
     var msg = encodeURIComponent('Tôi muốn đăng ký lắp mạng FPT. Tên: ' + name + ', SĐT: ' + phone);
-    var zalo = document.getElementById('leadForm').dataset.zalo;
-    window.open(zalo + '?src=' + msg, '_blank');
+    if (window.gtag) {
+      window.gtag('event', 'generate_lead');
+      var ads = f.dataset.ads;
+      if (ads) {
+        window.gtag('event', 'conversion', { send_to: ads + (f.dataset.adsLabel ? '/' + f.dataset.adsLabel : '') });
+      }
+    }
+    window.open(f.dataset.zalo + '?src=' + msg, '_blank');
   });
 </script>
 
