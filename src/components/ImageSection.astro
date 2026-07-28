@@ -1,0 +1,18 @@
+---
+interface Props { heading?: string; src: string; alt: string; soft?: boolean; id?: string; }
+const { heading, src, alt, soft = false, id } = Astro.props;
+---
+<section class:list={['section', { 'section--soft': soft }]} id={id}>
+  <div class="container">
+    {heading && (
+      <div class="section__head">
+        <h2>{heading}</h2>
+      </div>
+    )}
+    <img class="imgsection__img" src={src} alt={alt} loading="lazy" width="1140" />
+  </div>
+</section>
+
+<style>
+.imgsection__img { width: 100%; height: auto; border-radius: var(--radius); box-shadow: var(--shadow); }
+</style>

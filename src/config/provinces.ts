@@ -1,5 +1,11 @@
 import { site } from './site';
 
+export interface Office {
+  name: string;
+  address: string;
+  hours: string;
+}
+
 export interface Province {
   slug: string;
   active: boolean;
@@ -10,6 +16,7 @@ export interface Province {
   metaDescription: string;
   heroHeadline: string;
   intro: string;
+  offices?: Office[];
 }
 
 export const provinces: Record<string, Province> = {
@@ -29,6 +36,15 @@ export const provinces: Record<string, Province> = {
     heroHeadline: 'Lắp mạng FPT tại Hải Phòng',
     intro:
       'Bạn đang tìm đơn vị lắp mạng FPT tại Hải Phòng nhanh, uy tín, giá tốt? Chúng tôi hỗ trợ đăng ký và lắp đặt internet FPT trên toàn bộ các quận, huyện tại Hải Phòng — từ nội thành Lê Chân, Hồng Bàng, Ngô Quyền đến các huyện Thủy Nguyên, An Dương, Kiến Thụy. Modem Wi-Fi 6 miễn phí, kỹ thuật viên đến tận nhà khảo sát và lắp trong ngày.',
+    offices: [
+      { name: 'FPT Telecom Hải Phòng – Trụ sở chính', address: 'Đường Bùi Viện, Phường Lê Chân, Hải Phòng', hours: '07h30 - 18h00 (T2–T7); 08h00 - 12h00 & 13h30 - 17h30 (CN)' },
+      { name: 'FPT Telecom Kiến An', address: '255 Phan Đăng Lưu, Phường Phù Liễn, Hải Phòng', hours: '07h30 - 18h00 (T2–T7)' },
+      { name: 'FPT Telecom Kiến Thụy', address: '114 Cầu Đen, Thị trấn Núi Đôi, Huyện Kiến Thụy, Hải Phòng', hours: '08h00 - 17h30 (T2–T7)' },
+      { name: 'FPT Telecom Thủy Nguyên', address: 'Khu Đầm Tràng, Phường Thủy Nguyên, Thành Phố Hải Phòng', hours: '08h00 - 17h30 (T2–T7)' },
+      { name: 'FPT Telecom Vĩnh Bảo', address: '178 Đông Thái, Xã Vĩnh Bảo, Thành Phố Hải Phòng', hours: '08h00 - 17h30 (T2–T7)' },
+      { name: 'FPT Telecom Tiên Lãng', address: '146 Khu 8, Xã Tiên Lãng, Thành Phố Hải Phòng', hours: '08h00 - 17h30 (T2–T7)' },
+      { name: 'FPT Telecom An Dương', address: '63 TDP số 2, Phường An Dương, Thành Phố Hải Phòng', hours: '08h00 - 12h00 & 13h30 - 17h30 (T2–T7)' },
+    ],
   },
   // To add a province: copy this block, change slug/name/districts/meta, set active:true.
   // Example (disabled):

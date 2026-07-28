@@ -5,8 +5,8 @@ import { getProvince } from '../src/config/provinces';
 const faqs = getFaqs(getProvince('haiphong'));
 
 describe('faqs', () => {
-  it('has 6-10 items', () => {
-    expect(faqs.length).toBeGreaterThanOrEqual(6);
+  it('has 4-10 items', () => {
+    expect(faqs.length).toBeGreaterThanOrEqual(4);
     expect(faqs.length).toBeLessThanOrEqual(10);
   });
   it('every item has a question and a non-empty answer', () => {

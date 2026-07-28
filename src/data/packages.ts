@@ -1,156 +1,153 @@
-export type PackageCategory = 'internet' | 'combo';
+export type PackageGroup = 'family' | 'business' | 'gamer';
 
 export interface FptPackage {
   id: string;
-  category: PackageCategory;
+  group: PackageGroup;
   name: string;
   tagline: string;
   speed?: string;
-  /** VNĐ/month, VAT included. VERIFY against official FPT rates before launch. */
+  /** VNĐ/month. VERIFY against the live site / official FPT rates before launch. */
   priceMonthly: number;
-  originalPrice?: number;
   features: string[];
+  /** Card image (path under /public). */
+  image?: string;
   highlight?: boolean;
   badge?: string;
   savings?: string;
+  /** Detail popup image (gamer packages). */
+  detailImage?: string;
 }
 
 export const packages: FptPackage[] = [
-  // ---------- Internet cá nhân ----------
+  // ---------- Gói Gia đình ----------
   {
     id: 'giga',
-    category: 'internet',
-    name: 'Internet GIGA',
+    group: 'family',
+    name: 'Gói Internet Giga',
     tagline: 'Phù hợp hộ gia đình nhỏ',
-    speed: 'Tốc độ tối đa 1Gbps',
-    priceMonthly: 220000, // VERIFY
-    originalPrice: 275000, // VERIFY
-    features: [
-      'Miễn phí modem Wi-Fi 6',
-      'Tặng thêm tháng cước sử dụng',
-      'Hỗ trợ lắp đặt nhanh trong ngày',
-    ],
-    highlight: true,
-    badge: 'HOT',
-  },
-  {
-    id: 'sky',
-    category: 'internet',
-    name: 'Internet SKY',
-    tagline: 'Phù hợp hộ gia đình lớn',
-    speed: 'Tốc độ tối đa 1Gbps',
-    priceMonthly: 235000, // VERIFY
-    features: [
-      'Miễn phí modem Wi-Fi 6',
-      'Tặng thêm tháng cước sử dụng',
-      'Hỗ trợ lắp nhanh trong ngày',
-    ],
-  },
-  {
-    id: 'meta',
-    category: 'internet',
-    name: 'Internet META',
-    tagline: 'Phù hợp văn phòng, hộ gia đình lớn',
-    speed: 'Băng thông lớn, ổn định',
-    priceMonthly: 340000, // VERIFY
-    features: [
-      'Miễn phí modem Wi-Fi 6',
-      'Tặng thêm tháng cước sử dụng',
-      'Miễn phí lắp đặt tại nhà',
-    ],
-  },
-  {
-    id: 'fgame',
-    category: 'internet',
-    name: 'Internet F-GAME',
-    tagline: 'Dành cho game thủ, streamer',
-    speed: 'Ưu tiên độ trễ thấp',
-    priceMonthly: 255000, // VERIFY
-    features: [
-      'Miễn phí modem Wi-Fi 6',
-      'Tặng thêm tháng cước sử dụng',
-      'Tích hợp ULTRAFAST hỗ trợ +50 tựa game',
-      'Hỗ trợ lắp đặt nhanh trong ngày',
-    ],
-    badge: 'GAME',
-  },
-  {
-    id: 'antam',
-    category: 'internet',
-    name: 'Internet AN TÂM',
-    tagline: 'Bảo mật F-Safe an tâm kết nối',
-    speed: 'Tốc độ tối đa 1Gbps',
-    priceMonthly: 245000, // VERIFY
-    features: [
-      'Miễn phí modem Wi-Fi 6',
-      'Ngăn chặn trang web độc hại và lừa đảo',
-      'Ngăn chặn theo dõi trực tuyến',
-      'Giới hạn thời gian sử dụng Internet của trẻ',
-    ],
-    badge: 'NEW',
-  },
-  // ---------- Combo Internet + Truyền hình ----------
-  {
-    id: 'combo-giga',
-    category: 'combo',
-    name: 'Combo GIGA',
-    tagline: 'Internet + FPT Play cho gia đình nhỏ',
-    priceMonthly: 240000, // VERIFY
-    features: [
-      'Miễn phí modem Wi-Fi 6 & FPT Play',
-      'Hơn 180 kênh truyền hình trong và ngoài nước',
-      'Tặng thêm tháng cước sử dụng',
-      'Lắp đặt nhanh trong ngày',
-    ],
-    savings: 'Tiết kiệm 590.000đ khi mua lẻ',
-    highlight: true,
-    badge: 'HOT',
+    speed: 'Tốc độ 1000/300 Mbps',
+    priceMonthly: 195000, // VERIFY (trang cũ)
+    image: '/images/giga.jpg',
+    detailImage: '/images/giga-detail.png',
+    features: ['Trang bị modem Wi-Fi 6', 'Kết nối ≥ 10 thiết bị'],
   },
   {
     id: 'combo-sky',
-    category: 'combo',
-    name: 'Combo SKY',
-    tagline: 'Internet + FPT Play cho gia đình vừa',
-    priceMonthly: 260000, // VERIFY
+    group: 'family',
+    name: 'Combo Internet + Truyền hình Sky',
+    tagline: 'Internet + FPT Play cho gia đình',
+    speed: 'Tốc độ 1000/1000 Mbps',
+    priceMonthly: 209000, // VERIFY (ndsua mục 8)
+    image: '/images/sky.jpg',
+    detailImage: '/images/sky-detail.png',
     features: [
-      'Miễn phí modem Wi-Fi 6 & FPT Play',
-      'Hơn 180 kênh truyền hình',
-      'Tặng thêm tháng cước sử dụng',
-      'Lắp đặt nhanh trong ngày',
+      'Trang bị modem Wi-Fi 6, kết nối ≥ 15 thiết bị',
+      'Tặng FPT Play Box xem truyền hình chất lượng cao',
     ],
-    savings: 'Tiết kiệm 590.000đ khi mua lẻ',
+    highlight: true,
+    badge: 'Phổ biến',
   },
   {
-    id: 'combo-fgame',
-    category: 'combo',
-    name: 'Combo F-GAME',
-    tagline: 'Internet + FPT Play cho gamer/streamer',
-    priceMonthly: 295000, // VERIFY
+    id: 'combo-ngoai-hang-anh',
+    group: 'family',
+    name: 'Combo Internet Ngoại hạng Anh',
+    tagline: 'Xem Ngoại hạng Anh bản quyền',
+    speed: 'Tốc độ 1000/1000 Mbps',
+    priceMonthly: 239000, // VERIFY (trang cũ)
+    image: '/images/ngoai-hang-anh.jpg',
+    detailImage: '/images/ngoai-hang-anh-detail.png',
     features: [
-      'Miễn phí modem Wi-Fi 6 & FPT Play',
-      'Hơn 180 kênh truyền hình',
-      'Tích hợp ULTRAFAST hỗ trợ +50 tựa game',
-      'Lắp đặt nhanh trong ngày',
+      'Modem Wi-Fi 6 + FPT Play Box, kết nối ≥ 15 thiết bị',
+      'Xem Ngoại hạng Anh bản quyền trên 2 thiết bị',
     ],
-    savings: 'Tiết kiệm 1.450.000đ khi mua lẻ',
+  },
+  // ---------- Gói Doanh nghiệp ----------
+  {
+    id: 'super300-biz',
+    group: 'business',
+    name: 'Gói Super300 Biz',
+    tagline: 'Phù hợp văn phòng nhỏ',
+    speed: 'Tốc độ 300 Mbps',
+    priceMonthly: 450000, // VERIFY (trang cũ)
+    image: '/images/biz-300.jpg',
+    detailImage: '/images/biz-300-detail.png',
+    features: ['Trang bị Modem MikroTik + Access Point', 'Phù hợp văn phòng nhỏ'],
+  },
+  {
+    id: 'lux500',
+    group: 'business',
+    name: 'Gói Lux500',
+    tagline: 'Băng thông lớn cho công ty',
+    speed: 'Tốc độ 500 Mbps',
+    priceMonthly: 800000, // VERIFY (trang cũ)
+    image: '/images/biz-500.jpg',
+    detailImage: '/images/biz-500-detail.png',
+    features: ['Wi-Fi 6 + Access Point', 'Phủ sóng lên đến 125 thiết bị'],
+  },
+  {
+    id: 'combo-lux800',
+    group: 'business',
+    name: 'Combo Lux800',
+    tagline: 'Internet + Truyền hình doanh nghiệp',
+    speed: 'Tốc độ 800 Mbps',
+    priceMonthly: 1075600, // VERIFY (trang cũ)
+    image: '/images/biz-800.jpg',
+    detailImage: '/images/biz-800-detail.png',
+    features: [
+      'Wi-Fi 6 + Access Point, gần 120 kênh FPT Play',
+      'Kết nối lên đến 160 thiết bị',
+    ],
+  },
+  // ---------- Gói Internet cho game thủ ----------
+  // VERIFY: details from https://fpt.vn/internet/game-thu
+  {
+    id: 'gamer-meta',
+    group: 'gamer',
+    name: 'Internet Meta',
+    tagline: 'Băng thông đối xứng 1 Gbps',
+    speed: '1 Gbps / 1 Gbps',
+    priceMonthly: 295000, // VERIFY
+    image: '/gamer/meta.jpg',
+    detailImage: '/gamer/detail-meta.png',
+    features: ['Modem Wi-Fi 6', 'Kết nối đến 25 thiết bị', 'Phù hợp chơi game, livestream'],
+  },
+  {
+    id: 'gamer-fgame',
+    group: 'gamer',
+    name: 'Internet F-Game',
+    tagline: 'Ultra Fast — giảm độ trễ tối đa',
+    speed: '1 Gbps / 300 Mbps',
+    priceMonthly: 225000, // VERIFY
+    image: '/gamer/fgame.jpg',
+    detailImage: '/gamer/detail-fgame.png',
+    features: ['Modem Wi-Fi 6', 'Ultra Fast hỗ trợ 50+ tựa game', 'Giảm độ trễ tới 16ms'],
     badge: 'GAME',
   },
   {
-    id: 'combo-antam',
-    category: 'combo',
-    name: 'Combo AN TÂM',
-    tagline: 'Internet + FPT Play + bảo mật F-Safe',
-    priceMonthly: 280000, // VERIFY
-    features: [
-      'Miễn phí modem Wi-Fi 6 & FPT Play',
-      'Bảo mật F-Safe: chặn web độc hại, lừa đảo',
-      'Gần 130 kênh truyền hình đặc sắc',
-      'Kết nối nhanh, ổn định, bảo vệ mọi thiết bị',
-    ],
-    badge: 'NEW',
+    id: 'gamer-combo-meta',
+    group: 'gamer',
+    name: 'Combo Meta',
+    tagline: 'Internet Meta + FPT Play Box',
+    speed: '1 Gbps / 1 Gbps',
+    priceMonthly: 320000, // VERIFY
+    image: '/gamer/combo-meta.jpg',
+    detailImage: '/gamer/detail-combo-meta.png',
+    features: ['Modem Wi-Fi 6 + FPT Play Box', 'Gần 120 kênh truyền hình', 'Bản quyền AFF ASEAN Hyundai Cup 2026'],
+  },
+  {
+    id: 'gamer-combo-fgame',
+    group: 'gamer',
+    name: 'Combo F-Game',
+    tagline: 'Internet F-Game + FPT Play + Ultra Fast',
+    speed: '1 Gbps / 300 Mbps',
+    priceMonthly: 270000, // VERIFY
+    image: '/gamer/combo-fgame.jpg',
+    detailImage: '/gamer/detail-combo-fgame.png',
+    features: ['Modem Wi-Fi 6 + FPT Play Box', 'Ultra Fast 50+ tựa game', 'Kho phim 4K'],
+    badge: 'GAME',
   },
 ];
 
-export function getPackagesByCategory(category: PackageCategory): FptPackage[] {
-  return packages.filter((p) => p.category === category);
+export function getPackagesByGroup(group: PackageGroup): FptPackage[] {
+  return packages.filter((p) => p.group === group);
 }

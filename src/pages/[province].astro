@@ -3,10 +3,10 @@ import ProvinceLayout from '../layouts/ProvinceLayout.astro';
 import { getActiveProvinces } from '../config/provinces';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
-import Benefits from '../components/Benefits.astro';
 import Packages from '../components/Packages.astro';
-import ComboTV from '../components/ComboTV.astro';
-import Process from '../components/Process.astro';
+import GamerSection from '../components/GamerSection.astro';
+import CallBand from '../components/CallBand.astro';
+import ImageSection from '../components/ImageSection.astro';
 import Coverage from '../components/Coverage.astro';
 import FAQ from '../components/FAQ.astro';
 import CTASection from '../components/CTASection.astro';
@@ -24,13 +24,15 @@ const { province } = Astro.props;
 <ProvinceLayout province={province}>
   <Header province={province} />
   <Hero province={province} />
-  <Benefits />
   <Packages province={province} />
-  <ComboTV province={province} />
-  <Process />
+  <GamerSection />
+  <CallBand variant="pulse" />
+  <ImageSection src="/quytrinhlapdat.png" alt="Quy trình lắp đặt mạng FPT" />
+  <ImageSection heading="Ưu đãi khách hàng đăng ký online" src="/quatang-fpt.png" alt="Quà tặng FPT khi đăng ký online" soft />
   <Coverage province={province} />
   <FAQ province={province} />
   <CTASection province={province} />
+  <CallBand variant="blink" />
   <Footer province={province} />
   <FloatingContact />
 </ProvinceLayout>

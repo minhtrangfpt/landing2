@@ -1,0 +1,32 @@
+---
+import { site } from '../config/site';
+interface Props { variant?: 'pulse' | 'blink'; }
+const { variant = 'pulse' } = Astro.props;
+---
+<section class:list={['section', 'callband', { 'callband--blink': variant === 'blink' }]} aria-label="Gọi ngay đăng ký">
+  <div class="container callband__inner">
+    <a class:list={['btn', 'btn--lg', 'callband__call', { 'callband__call--pulse': variant === 'pulse' }]} href={`tel:${site.phoneRaw}`}>
+      📞 Gọi ngay — {site.phoneDisplay}
+    </a>
+    <a class="btn btn--lg callband__zalo" href={site.zalo} target="_blank" rel="noopener">💬 Chat Zalo tư vấn</a>
+  </div>
+</section>
+
+<style>
+.callband { background: linear-gradient(135deg, var(--orange), var(--orange-dark)); color: #fff; text-align: center; }
+.callband__inner { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; align-items: center; }
+.callband__call { background: #fff; color: var(--orange-dark); font-size: 1.15rem; padding: 16px 34px; }
+.callband__call:hover { background: var(--gray-100); }
+.callband__zalo { background: rgba(255, 255, 255, 0.18); color: #fff; border: 2px solid rgba(255, 255, 255, 0.55); }
+.callband__zalo:hover { background: rgba(255, 255, 255, 0.3); }
+.callband__call--pulse { animation: cb-glow 1.8s infinite; }
+@keyframes cb-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6); }
+  50% { box-shadow: 0 0 0 12px rgba(255, 255, 255, 0); }
+}
+.callband--blink .callband__call { animation: cb-blink 1.2s infinite; }
+@keyframes cb-blink {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}
+</style>

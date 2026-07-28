@@ -1,45 +1,59 @@
 ---
 import { site } from '../config/site';
-import { getActiveProvinces } from '../config/provinces';
 import type { Province } from '../config/provinces';
 interface Props { province: Province; }
 const { province } = Astro.props;
-const provinces = getActiveProvinces();
+const offices = province.offices ?? [];
 const year = new Date().getFullYear();
 ---
 <footer class="footer">
   <div class="container footer__grid">
-    <div>
-      <div class="footer__brand"><span class="hdr__logo">FPT</span> {site.brand}</div>
-      <p>Dịch vụ đăng ký, lắp đặt internet FPT và combo truyền hình FPT Play tại {province.name}.</p>
+    <div class="footer__col">
+      <div class="footer__brand"><img class="footer__logo-img" src="/logo-fpt.png" alt="FPT" width="90" height="30" /> Telecom {province.name}</div>
+      <img class="footer__hq" src="/images/tru-so.jpg" alt={`Trụ sở FPT Telecom ${province.name}`} loading="lazy" />
     </div>
-    <div>
+    <div class="footer__col">
       <h3>Liên hệ</h3>
       <p><a href={`tel:${site.phoneRaw}`}>📞 {site.phoneDisplay}</a></p>
       <p><a href={site.zalo} target="_blank" rel="noopener">💬 Chat Zalo</a></p>
     </div>
-    {provinces.length > 1 && (
-      <div>
-        <h3>Khu vực phục vụ</h3>
-        <ul>
-          {provinces.map((p) => <li><a href={`/${p.slug}/`}>{p.name}</a></li>)}
+    {offices.length > 0 && (
+      <div class="footer__col footer__offices">
+        <h3>Các trụ sở giao dịch tại {province.name}</h3>
+        <ul class="office-list">
+          {offices.map((o) => (
+            <li class="office">
+              <p class="office__name">{o.name}</p>
+              <p class="office__addr">{o.address}</p>
+              <p class="office__hours">🕒 {o.hours}</p>
+            </li>
+          ))}
         </ul>
       </div>
     )}
   </div>
   <div class="footer__bar">
-    <div class="container">© {year} {site.brand}. Nội dung mang tính tham khảo, giá cước vui lòng xác nhận khi đăng ký.</div>
+    <div class="container">© {year} FPT Telecom {province.name}. Nội dung mang tính tham khảo, giá cước vui lòng xác nhận khi đăng ký.</div>
   </div>
 </footer>
 
 <style>
 .footer { background: var(--navy); color: #cdd8ea; padding: 48px 0 0; }
-.footer__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding-bottom: 32px; }
-.footer h3 { color: #fff; font-size: 1rem; margin-bottom: 10px; }
+.footer__grid { display: grid; grid-template-columns: 1fr 1fr 2fr; gap: 28px; padding-bottom: 32px; }
+.footer h3 { color: #fff; font-size: 1rem; margin-bottom: 12px; }
 .footer a { color: #fff; }
 .footer a:hover { color: var(--orange); }
-.footer__brand { display: flex; align-items: center; gap: 8px; font-weight: 800; color: #fff; margin-bottom: 8px; }
+.footer__brand { display: flex; align-items: center; gap: 8px; font-weight: 800; color: #fff; font-size: 1.05rem; }
 .footer__bar { border-top: 1px solid rgba(255,255,255,.12); padding: 14px 0; font-size: .85rem; }
-.hdr__logo { background: var(--orange); color: #fff; padding: 6px 10px; border-radius: 8px; font-weight: 900; }
-@media (max-width: 720px) { .footer__grid { grid-template-columns: 1fr; } }
+.footer__logo-img { height: 30px; width: auto; display: block; }
+.footer__hq { width: 100%; aspect-ratio: 16 / 10; object-fit: contain; border-radius: var(--radius-sm); margin-top: 12px; background: #fff; }
+.office-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 18px; }
+.office { font-size: .85rem; }
+.office__name { color: #fff; font-weight: 700; }
+.office__addr { color: #cdd8ea; }
+.office__hours { color: #9fb0cc; font-size: .8rem; }
+@media (max-width: 900px) {
+  .footer__grid { grid-template-columns: 1fr; }
+  .office-list { grid-template-columns: 1fr; }
+}
 </style>

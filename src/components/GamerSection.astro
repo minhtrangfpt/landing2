@@ -1,0 +1,60 @@
+---
+import { getPackagesByGroup } from '../data/packages';
+import { formatVnd } from '../lib/format';
+import { site } from '../config/site';
+const gamers = getPackagesByGroup('gamer');
+---
+<section class="section section--soft" id="game-thu" aria-labelledby="gamer-title">
+  <div class="container">
+    <div class="section__head">
+      <h2 id="gamer-title">Gói Internet cho game thủ</h2>
+      <p>Tối ưu độ trễ, băng thông lớn cho chơi game và livestream.
+        <a href="https://fpt.vn/internet/game-thu" target="_blank" rel="noopener">Tham khảo tại fpt.vn →</a>
+      </p>
+    </div>
+    <div class="gamer-grid">
+      {gamers.map((g) => (
+        <article class:list={['card', 'gamer', { 'gamer--hl': g.highlight }]}>
+          {g.badge && <span class="badge gamer__badge">{g.badge}</span>}
+          <img class="gamer__img" src={g.image} alt={g.name} loading="lazy" />
+          <h3>{g.name}</h3>
+          {g.speed && <p class="gamer__speed">{g.speed}</p>}
+          <div class="gamer__price">
+            <span class="gamer__amount">{formatVnd(g.priceMonthly)}</span>
+            <span class="gamer__unit">/tháng</span>
+          </div>
+          <button class="btn btn--soft gamer__detail" type="button" onclick={`document.getElementById('dlg-${g.id}').showModal()`}>Xem chi tiết</button>
+          <a class="btn btn--fpt" href="#dang-ky">Đăng ký {g.name}</a>
+          <dialog id={`dlg-${g.id}`} class="gamer__dlg" aria-label={`Chi tiết ${g.name}`}>
+            <div class="gamer__dlg-inner">
+              <img src={g.detailImage} alt={`Chi tiết ${g.name}`} />
+              <button class="gamer__close" type="button" autofocus onclick={`document.getElementById('dlg-${g.id}').close()`}>✕</button>
+            </div>
+          </dialog>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+.gamer-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.gamer { padding: 16px; display: flex; flex-direction: column; position: relative; }
+.gamer--hl { border: 2px solid var(--orange); }
+.gamer__badge { position: absolute; top: 10px; right: 10px; z-index: 2; }
+.gamer__img { width: 100%; aspect-ratio: 13 / 8; object-fit: cover; border-radius: var(--radius-sm); margin-bottom: 10px; background: var(--bg-soft); }
+.gamer h3 { margin-bottom: 2px; }
+.gamer__speed { color: var(--muted); font-size: .85rem; }
+.gamer__price { margin: 8px 0 12px; }
+.gamer__amount { font-size: 1.4rem; font-weight: 900; color: var(--orange); }
+.gamer__unit { color: var(--muted); }
+.gamer__detail { width: 100%; margin-bottom: 8px; }
+.gamer .btn--fpt { width: 100%; }
+.gamer__dlg { border: 0; padding: 0; background: transparent; max-width: min(92vw, 760px); }
+.gamer__dlg::backdrop { background: rgba(11, 44, 93, 0.72); }
+.gamer__dlg-inner { position: relative; }
+.gamer__dlg img { display: block; width: 100%; height: auto; border-radius: var(--radius); }
+.gamer__close { position: absolute; top: 8px; right: 8px; width: 36px; height: 36px; border-radius: 50%; border: 0; background: rgba(0, 0, 0, 0.6); color: #fff; font-weight: 800; cursor: pointer; }
+@media (max-width: 1000px) { .gamer-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .gamer-grid { grid-template-columns: 1fr; } }
+</style>

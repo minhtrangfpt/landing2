@@ -1,54 +1,107 @@
 ---
-import { getPackagesByCategory } from '../data/packages';
+import { getPackagesByGroup } from '../data/packages';
 import { formatVnd } from '../lib/format';
 import { site } from '../config/site';
 import type { Province } from '../config/provinces';
 interface Props { province: Province; }
 const { province } = Astro.props;
-const internet = getPackagesByCategory('internet');
+const groups = [
+  {
+    id: 'bang-gia',
+    eyebrow: 'Gói Gia đình',
+    title: 'Gói Internet cá nhân gia đình',
+    sub: 'Giá tốt cho gia đình. Tốc độ nhanh, tặng modem Wi-Fi 6, lắp đặt trong ngày.',
+    items: getPackagesByGroup('family'),
+    soft: true,
+  },
+  {
+    id: 'goi-doanh-nghiep',
+    eyebrow: 'Gói Doanh nghiệp',
+    title: 'Gói Doanh nghiệp',
+    sub: 'Phù hợp văn phòng, công ty — băng thông ổn định, phủ sóng rộng, hỗ trợ nhiều thiết bị.',
+    items: getPackagesByGroup('business'),
+    soft: false,
+  },
+];
 ---
-<section class="section" id="goi-cuoc" aria-labelledby="packages-title">
-  <div class="container">
-    <div class="section__head">
-      <h2 id="packages-title">Bảng giá các gói internet FPT tại {province.name}</h2>
-      <p>Giá đã bao gồm VAT. Miễn phí modem Wi-Fi 6. <em>(Giá tham khảo, vui lòng xác nhận khi đăng ký.)</em></p>
+{groups.map((g, i) => (
+  <section class:list={['section', { 'section--soft': g.soft }]} id={g.id} aria-labelledby={`${g.id}-title`}>
+    <div class="container">
+      <div class="section__head">
+        <span class="eyebrow">{g.eyebrow}</span>
+        <h2 id={`${g.id}-title`}>{g.title}</h2>
+        <p>{g.sub}</p>
+      </div>
+      <div class="pkg-grid">
+        {g.items.map((p) => (
+          <article class:list={['card', 'pkg', { 'pkg--hl': p.highlight }]}>
+            {p.highlight && p.badge && (
+              <span class="pkg__hot">
+                <span class="pkg__hot-flame" aria-hidden="true">🔥</span>
+                <span class="pkg__hot-text">{p.badge}</span>
+              </span>
+            )}
+            {p.image && <img class="pkg__img" src={p.image} alt={p.name} loading="lazy" />}
+            <div class="pkg__body">
+              <h3>{p.name}</h3>
+              <div class="pkg__price">
+                <span class="pkg__amount">{formatVnd(p.priceMonthly)}</span>
+                <span class="pkg__unit">/tháng</span>
+              </div>
+              {p.speed && <span class="pkg-speed-pill">{p.speed}</span>}
+              <ul class="pkg__features">
+                {p.features.map((f) => <li>✓ {f}</li>)}
+              </ul>
+              <div class="pkg__btns">
+                <a class="btn btn--fpt btn-block" href="#dang-ky">Đăng ký ngay</a>
+                {p.detailImage && (
+                  <button class="btn btn--soft btn-block pkg__detail-btn" type="button" onclick={`document.getElementById('dlg-${p.id}').showModal()`}>Xem chi tiết</button>
+                )}
+              </div>
+            </div>
+            {p.detailImage && (
+              <dialog id={`dlg-${p.id}`} class="pkg__dlg" aria-label={`Chi tiết ${p.name}`}>
+                <div class="pkg__dlg-inner">
+                  <button class="pkg__close" type="button" autofocus onclick={`document.getElementById('dlg-${p.id}').close()`} aria-label="Đóng">✕</button>
+                  <img src={p.detailImage} alt={`Chi tiết ${p.name}`} />
+                </div>
+              </dialog>
+            )}
+          </article>
+        ))}
+      </div>
+      {i === 0 && (
+        <p class="pkg__note">💡 Giá có thể thay đổi theo chương trình khuyến mãi. <a href={`tel:${site.phoneRaw}`} class="pkg__note-link">Gọi ngay</a> để nhận báo giá mới nhất.</p>
+      )}
     </div>
-    <div class="pkg-grid">
-      {internet.map((p) => (
-        <article class:list={['card', 'pkg', { 'pkg--hl': p.highlight }]}>
-          {p.badge && <span class="badge pkg__badge">{p.badge}</span>}
-          <h3>{p.name}</h3>
-          <p class="pkg__tag">{p.tagline}</p>
-          {p.speed && <p class="pkg__speed">{p.speed}</p>}
-          <div class="pkg__price">
-            <span class="pkg__amount">{formatVnd(p.priceMonthly)}</span>
-            {p.originalPrice && <span class="pkg__old">{formatVnd(p.originalPrice)}</span>}
-            <span class="pkg__unit">/tháng</span>
-          </div>
-          <ul class="pkg__features">
-            {p.features.map((f) => <li>✓ {f}</li>)}
-          </ul>
-          <a class="btn btn--call pkg__cta" href={`tel:${site.phoneRaw}`}>Đăng ký {p.name}</a>
-        </article>
-      ))}
-    </div>
-  </div>
-</section>
+  </section>
+))}
+{province && <span class="visually-hidden">{province.name}</span>}
 
 <style>
-.pkg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.pkg { padding: 24px; display: flex; flex-direction: column; position: relative; }
-.pkg--hl { border: 2px solid var(--orange); }
-.pkg__badge { position: absolute; top: 14px; right: 14px; }
-.pkg__tag { color: var(--muted); font-size: .92rem; }
-.pkg__speed { font-weight: 700; color: var(--navy-light); margin: 4px 0; }
-.pkg__price { margin: 14px 0; }
-.pkg__amount { font-size: 1.7rem; font-weight: 900; color: var(--orange); }
-.pkg__old { text-decoration: line-through; color: var(--muted); font-size: .9rem; margin-left: 8px; }
-.pkg__unit { color: var(--muted); }
-.pkg__features { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; flex: 1; }
-.pkg__features li { font-size: .93rem; }
-.pkg__cta { width: 100%; }
+.pkg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
+.pkg { padding: 0; display: flex; flex-direction: column; position: relative; overflow: visible; }
+.pkg--hl { border: 2px solid var(--orange); box-shadow: 0 10px 26px rgba(238,108,31,.22); }
+.pkg__hot { position: absolute; top: -30px; left: 50%; transform: translateX(-50%); z-index: 3; display: flex; flex-direction: column; align-items: center; pointer-events: none; }
+.pkg__hot-flame { font-size: 3rem; line-height: 1; transform-origin: bottom center; filter: drop-shadow(0 4px 8px rgba(238,108,31,.55)); animation: flicker 1.1s infinite alternate; }
+@keyframes flicker { from { transform: scale(1) rotate(-3deg); } to { transform: scale(1.1) rotate(3deg); } }
+.pkg__hot-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -42%); font-size: .58rem; font-weight: 900; color: #fff; text-transform: uppercase; letter-spacing: .02em; text-shadow: 0 1px 2px rgba(0,0,0,.4); white-space: nowrap; }
+.pkg__img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; background: var(--bg-soft); border-radius: var(--radius) var(--radius) 0 0; }
+.pkg__body { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
+.pkg h3 { margin-bottom: 4px; }
+.pkg__price { display: flex; align-items: baseline; gap: 4px; margin: 4px 0 8px; }
+.pkg__amount { font-size: 1.5rem; font-weight: 800; color: var(--orange-dark); }
+.pkg__unit { font-size: .8rem; color: var(--muted); font-weight: 600; }
+.pkg__features { display: flex; flex-direction: column; gap: 8px; margin: 12px 0 16px; flex: 1; color: var(--muted); font-size: .9rem; }
+.pkg__btns { display: flex; flex-direction: column; gap: 8px; }
+.pkg__detail-btn { padding: 9px 16px; font-size: .9rem; }
+.pkg__note { text-align: center; color: var(--muted); font-size: .9rem; margin-top: 28px; }
+.pkg__note-link { color: var(--orange); font-weight: 700; }
+.pkg__dlg { border: 0; padding: 0; background: transparent; max-width: min(92vw, 760px); }
+.pkg__dlg::backdrop { background: rgba(0, 0, 0, 0.75); }
+.pkg__dlg-inner { position: relative; }
+.pkg__dlg img { display: block; width: 100%; height: auto; border-radius: var(--radius); background: #fff; box-shadow: var(--shadow-lg); }
+.pkg__close { position: absolute; top: -14px; right: -10px; width: 36px; height: 36px; border-radius: 50%; border: 0; background: #fff; color: var(--orange-dark); font-weight: 800; cursor: pointer; box-shadow: var(--shadow-lg); }
 @media (max-width: 900px) { .pkg-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .pkg-grid { grid-template-columns: 1fr; } }
 </style>
