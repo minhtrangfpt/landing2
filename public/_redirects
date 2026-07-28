@@ -1,0 +1,3 @@
+# Cloudflare Pages redirects. Keep in sync with defaultProvince (src/config/site.ts).
+# Homepage -> default province (real HTTP 301 for SEO, overrides Astro's index.html meta-refresh).
+/ /haiphong/ 301
