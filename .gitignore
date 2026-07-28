@@ -26,4 +26,8 @@ Thumbs.db
 .astro/
 
 # local agent/permissions config
-.claude/settings.local.json
+.claude/
+
+# working/reference folders & build artifacts
+Rev1/
+*.zip

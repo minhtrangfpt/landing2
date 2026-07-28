@@ -30,7 +30,7 @@ Mọi dữ liệu tỉnh nằm trong `src/config/provinces.ts`.
 3. `npm run build`.
 
 ### Đổi tên miền
-Đổi `siteUrl` trong `src/config/site.ts` và `SITE` trong `astro.config.mjs`. Toàn bộ canonical / sitemap / schema tự cập nhật.
+Đổi `siteUrl` trong `src/config/site.ts` (nguồn sự thật duy nhất). Toàn bộ canonical / sitemap / robots.txt / schema tự cập nhật.
 
 ## Cập nhật giá cước
 Sửa `src/data/packages.ts` (mỗi giá có cờ `// VERIFY`). Sau khi đổi, chạy `npm run verify`.
