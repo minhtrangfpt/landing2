@@ -35,7 +35,8 @@ const perks = [
       {perks.map((p) => <li>{p}</li>)}
     </ul>
     <div class="hero__cta">
-      <a class="btn btn--lg btn--call btn--pulse" href={`tel:${site.phoneRaw}`}>📞 Hotline: {site.phoneDisplay}</a>
+      <a class="btn btn--lg hero__hotline" href={`tel:${site.phoneRaw}`}>📞 Hotline: {site.phoneDisplay}</a>
+      <a class="hero__sublink" href="#dang-ky">hoặc để lại số điện thoại, chúng tôi gọi lại →</a>
     </div>
   </div>
 </section>
@@ -48,11 +49,16 @@ const perks = [
 .hero__lead { font-size: clamp(1.05rem, 2.4vw, 1.3rem); font-weight: 700; margin-top: 8px; }
 .hero__price { display: inline-flex; align-items: baseline; gap: 6px; background: rgba(255, 255, 255, 0.15); border-radius: var(--radius-sm); padding: 8px 18px; margin: 16px 0 20px; }
 .hero__price strong { font-size: 1.6rem; font-weight: 800; }
-.hero__perks { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 24px; font-weight: 600; font-size: .9rem; }
-.hero__perks li { background: rgba(255, 255, 255, 0.15); border-radius: 999px; padding: 6px 12px; }
-.hero__cta { display: flex; flex-direction: column; align-items: stretch; gap: 12px; max-width: 420px; margin: 0 auto; }
+.hero__perks { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 24px; font-weight: 700; font-size: 1rem; }
+.hero__perks li { background: #fff; color: var(--orange-dark); border-radius: 999px; padding: 8px 16px; }
+@media (max-width: 640px) { .hero__perks { font-size: .85rem; } }
+.hero__cta { display: flex; flex-direction: column; align-items: center; gap: 10px; max-width: 420px; margin: 0 auto; }
+.hero__hotline { background: #fff; color: var(--orange-dark); }
+.hero__hotline:hover { background: var(--gray-100); }
+.hero__sublink { color: #fff; font-size: .9rem; font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.hero__sublink:hover { color: #fff5ee; }
 @media (min-width: 640px) {
-  .hero__cta { flex-direction: row; justify-content: center; max-width: none; }
-  .hero__cta .btn { min-width: 260px; }
+  .hero__cta { max-width: none; }
+  .hero__hotline { min-width: 300px; }
 }
 </style>

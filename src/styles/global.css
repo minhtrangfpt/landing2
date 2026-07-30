@@ -54,12 +54,12 @@ h3 { font-size: 1.2rem; }
 }
 .btn:hover { transform: translateY(-1px); }
 .btn-block { width: 100%; }
-.btn--call { background: var(--red); color: var(--white); }            /* Gọi ngay / hotline — đỏ */
-.btn--call:hover { background: var(--red-dark); }
+.btn--call { background: var(--orange); color: var(--white); }            /* Gọi ngay / hotline — primary cam */
+.btn--call:hover { background: var(--orange-dark); }
 .btn--fpt { background: var(--orange); color: var(--white); }          /* Đăng ký — cam */
 .btn--fpt:hover { background: var(--orange-dark); }
-.btn--zalo { background: var(--zalo); color: var(--white); }
-.btn--zalo:hover { background: var(--zalo-dark); }
+.btn--zalo { background: var(--white); color: var(--orange-dark); border-color: var(--orange); }
+.btn--zalo:hover { background: var(--orange-light); }
 .btn--soft { background: var(--gray-100); color: var(--ink); }         /* Xem chi tiết */
 .btn--soft:hover { background: #e5e7eb; }
 .btn--lg { padding: 16px 28px; font-size: 1.05rem; }
@@ -79,12 +79,12 @@ h3 { font-size: 1.2rem; }
 
 /* ---------- Animations ---------- */
 @keyframes btn-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.5); }
-  50% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(238, 108, 31, 0.5); }
+  50% { box-shadow: 0 0 0 10px rgba(238, 108, 31, 0); }
 }
 .btn--pulse { animation: btn-pulse 1.8s infinite; }
 @keyframes cb-blink {
-  0%, 100% { transform: scale(1); box-shadow: 0 8px 30px rgba(220,38,38,.4); }
-  50% { transform: scale(1.04); box-shadow: 0 12px 40px rgba(220,38,38,.7); }
+  0%, 100% { transform: scale(1); box-shadow: 0 8px 30px rgba(238,108,31,.4); }
+  50% { transform: scale(1.04); box-shadow: 0 12px 40px rgba(238,108,31,.7); }
 }
 .callband--blink .btn--call { animation: cb-blink 1.2s infinite; }

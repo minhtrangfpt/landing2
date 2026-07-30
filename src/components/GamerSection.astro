@@ -21,6 +21,9 @@ const gamers = getPackagesByGroup('gamer');
             <span class="gamer__amount">{formatVnd(g.priceMonthly)}</span>
             <span class="gamer__unit">/tháng</span>
           </div>
+          <ul class="gamer__features">
+            {g.features.slice(0, 3).map((f) => <li>✓ {f}</li>)}
+          </ul>
           <button class="btn btn--soft gamer__detail" type="button" onclick={`document.getElementById('dlg-${g.id}').showModal()`}>Xem chi tiết</button>
           <a class="btn btn--fpt" href="#dang-ky">Đăng ký {g.name}</a>
           <dialog id={`dlg-${g.id}`} class="gamer__dlg" aria-label={`Chi tiết ${g.name}`}>
@@ -46,6 +49,8 @@ const gamers = getPackagesByGroup('gamer');
 .gamer__price { margin: 8px 0 12px; }
 .gamer__amount { font-size: 1.4rem; font-weight: 900; color: var(--orange); }
 .gamer__unit { color: var(--muted); }
+.gamer__features { display: flex; flex-direction: column; margin: 6px 0 12px; color: var(--muted); font-size: .85rem; flex: 1; }
+.gamer__features li { line-height: 1.5; margin-bottom: 4px; }
 .gamer__detail { width: 100%; margin-bottom: 8px; }
 .gamer .btn--fpt { width: 100%; }
 .gamer__dlg { border: 0; padding: 0; background: transparent; max-width: min(92vw, 760px); }

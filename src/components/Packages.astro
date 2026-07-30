@@ -47,7 +47,7 @@ const groups = [
               </div>
               {p.speed && <span class="pkg-speed-pill">{p.speed}</span>}
               <ul class="pkg__features">
-                {p.features.map((f) => <li>✓ {f}</li>)}
+                {p.features.slice(0, 3).map((f) => <li>✓ {f}</li>)}
               </ul>
               <div class="pkg__btns">
                 <a class="btn btn--fpt btn-block" href="#dang-ky">Đăng ký ngay</a>
@@ -83,12 +83,13 @@ const groups = [
 .pkg__hot-flame { width: 15px; height: 15px; color: #fff; flex: none; }
 @keyframes hotpop { 0%,100% { transform: translateX(-50%) rotate(-3deg) scale(1); } 50% { transform: translateX(-50%) rotate(-3deg) scale(1.06); } }
 .pkg__img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--bg-soft); border-radius: var(--radius) var(--radius) 0 0; }
-.pkg__body { padding: 18px 20px 20px; display: flex; flex-direction: column; flex: 1; }
+.pkg__body { padding: 24px 20px 28px; display: flex; flex-direction: column; flex: 1; }
 .pkg h3 { margin-bottom: 4px; }
-.pkg__price { display: flex; align-items: baseline; gap: 4px; margin: 4px 0 8px; }
-.pkg__amount { font-size: 1.5rem; font-weight: 800; color: var(--orange-dark); }
+.pkg__price { display: flex; align-items: baseline; gap: 8px; margin: 6px 0 10px; }
+.pkg__amount { font-size: 1.8rem; font-weight: 800; color: var(--orange-dark); }
 .pkg__unit { font-size: .8rem; color: var(--muted); font-weight: 600; }
-.pkg__features { display: flex; flex-direction: column; gap: 8px; margin: 12px 0 16px; flex: 1; color: var(--muted); font-size: .9rem; }
+.pkg__features { display: flex; flex-direction: column; margin: 12px 0 16px; flex: 1; color: var(--muted); font-size: .9rem; }
+.pkg__features li { line-height: 1.6; margin-bottom: 6px; }
 .pkg__btns { display: flex; flex-direction: column; gap: 8px; }
 .pkg__detail-btn { padding: 9px 16px; font-size: .9rem; }
 .pkg__note { text-align: center; color: var(--muted); font-size: .9rem; margin-top: 28px; }

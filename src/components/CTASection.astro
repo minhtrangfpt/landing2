@@ -14,12 +14,8 @@ const { adsId, adsLabel } = analytics;
     <form class="cta-form" id="leadForm" data-zalo={site.zalo} data-ads={adsId} data-ads-label={adsLabel}>
       <input class="cta-form__input" type="text" name="name" placeholder="Họ và tên" required autocomplete="name" />
       <input class="cta-form__input" type="tel" name="phone" placeholder="Số điện thoại" required autocomplete="tel" />
-      <button class="btn btn--call" type="submit">Gửi đăng ký qua Zalo</button>
+      <button class="btn btn--call" type="submit">Gửi đăng ký ngay</button>
     </form>
-    <div class="cta-band__direct">
-      <a class="btn btn--call btn--lg" href={`tel:${site.phoneRaw}`}>📞 {site.phoneDisplay}</a>
-      <a class="btn btn--zalo btn--lg" href={site.zalo} target="_blank" rel="noopener">💬 Zalo</a>
-    </div>
   </div>
 </section>
 
@@ -49,5 +45,6 @@ const { adsId, adsLabel } = analytics;
 .cta-form { display: flex; flex-wrap: wrap; gap: 10px; }
 .cta-form__input { flex: 1; min-width: 200px; padding: 14px 16px; border-radius: 999px; border: 0; font-size: 1rem; }
 .cta-band__direct { display: flex; flex-wrap: wrap; gap: 12px; }
-.cta-band__direct .btn--zalo { background: #fff; color: var(--navy); }
+.cta-band .btn--call { background: #fff; color: var(--orange-dark); }
+.cta-band__direct .btn--zalo { background: #fff; color: var(--orange-dark); border-color: var(--orange); }
 </style>

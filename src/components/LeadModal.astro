@@ -7,7 +7,7 @@ const { adsId, adsLabel } = analytics;
     <button class="leadmodal__close" type="button" aria-label="Đóng" onclick="document.getElementById('leadModal').close()">✕</button>
     <div class="leadmodal__head">
       <h3 id="leadmodal-title">Đăng ký lắp mạng FPT</h3>
-      <p>Để lại thông tin — kỹ thuật viên liên hệ tư vấn & lắp trong ngày.</p>
+      <p>Quý khách hãy để lại thông tin, kỹ thuật viên sẽ tư vấn và lắp đặt trong ngày. Hotline: {site.phoneDisplay}</p>
     </div>
     <form id="leadModalForm" data-zalo={site.zalo} data-ads={adsId} data-ads-label={adsLabel}>
       <input type="text" name="name" placeholder="Họ và tên" required autocomplete="name" />
@@ -25,13 +25,15 @@ const { adsId, adsLabel } = analytics;
     var dlg = document.getElementById('leadModal');
     if (!dlg) return;
     window.openLeadForm = function () { try { dlg.showModal(); } catch (e) {} };
-    // Open once per session, after a short delay.
-    try {
-      if (!sessionStorage.getItem('leadSeen')) {
-        setTimeout(function () { try { dlg.showModal(); } catch (e) {} }, 4000);
-        sessionStorage.setItem('leadSeen', '1');
-      }
-    } catch (e) {}
+    // Open once per session, when the user scrolls near the bottom.
+    function fireOnce() {
+      try { if (sessionStorage.getItem('leadSeen')) return; } catch (e) { return; }
+      try { dlg.showModal(); } catch (e) {}
+      try { sessionStorage.setItem('leadSeen', '1'); } catch (e) {}
+    }
+    window.addEventListener('scroll', function () {
+      if ((window.innerHeight + window.scrollY) >= (document.body.scrollHeight - 300)) fireOnce();
+    });
     var f = document.getElementById('leadModalForm');
     if (f) f.addEventListener('submit', function (e) {
       e.preventDefault();

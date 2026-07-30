@@ -8,7 +8,6 @@ const { variant = 'pulse' } = Astro.props;
     <a class:list={['btn', 'btn--lg', 'callband__call', { 'callband__call--pulse': variant === 'pulse' }]} href={`tel:${site.phoneRaw}`}>
       📞 Gọi ngay — {site.phoneDisplay}
     </a>
-    <a class="btn btn--lg callband__zalo" href={site.zalo} target="_blank" rel="noopener">💬 Chat Zalo tư vấn</a>
   </div>
 </section>
 

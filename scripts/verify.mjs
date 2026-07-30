@@ -22,7 +22,7 @@ if (existsSync(hp)) {
   check('schema FAQPage', html.includes('"@type":"FAQPage"'));
   check('schema BreadcrumbList', html.includes('"@type":"BreadcrumbList"'));
   check('tel: link', html.includes('tel:0931505556'));
-  check('zalo link (>=4 occurrences)', (html.match(/zalo\.me\/0931505556/g) || []).length >= 4);
+  check('zalo link (>=2 occurrences)', (html.match(/zalo\.me\/0931505556/g) || []).length >= 2);
   check('package: Internet Giga', html.includes('Internet Giga'));
   check('family: Combo Ngoại hạng Anh', html.includes('Ngoại hạng Anh'));
   check('business group: Gói Doanh nghiệp', html.includes('Gói Doanh nghiệp'));
