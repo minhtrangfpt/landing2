@@ -7,27 +7,20 @@ const { province } = Astro.props;
 <header class="hdr">
   <div class="container hdr__row">
     <a href="/" class="hdr__brand" aria-label={`${site.brand} ${province.name}`}>
-      <img class="hdr__logo-img" src="/logo-fpt.png" alt="FPT Telecom" width="96" height="36" />
-      <span class="hdr__brandtext">
-        <strong>Tổng đài đăng ký lắp mạng FPT <span class="hdr__accent">{province.name}</span></strong>
-        <small>Đại lý phân phối chính thức FPT Telecom</small>
-      </span>
+      <img class="hdr__logo-img" src="/logo-fpt.png" alt="FPT Telecom" />
     </a>
-    <a class="btn btn--call hdr__callbtn" href={`tel:${site.phoneRaw}`}>📞 Gọi ngay</a>
+    <a class="btn btn--call btn--pulse hdr__hotline" href={`tel:${site.phoneRaw}`}>📞 Hotline: {site.phoneDisplay}</a>
   </div>
 </header>
 
 <style>
 .hdr { position: sticky; top: 0; z-index: 50; background: #fff; border-bottom: 1px solid var(--line); box-shadow: var(--shadow); }
-.hdr__row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 6px 16px; }
-.hdr__brand { display: flex; align-items: center; gap: 10px; min-width: 0; color: var(--ink); }
-.hdr__logo-img { height: 36px; width: auto; display: block; flex: none; }
-.hdr__brandtext { display: flex; flex-direction: column; line-height: 1.2; min-width: 0; }
-.hdr__brandtext strong { font-size: .92rem; font-weight: 800; }
-.hdr__brandtext small { font-size: .72rem; color: var(--muted); font-weight: 500; }
-.hdr__accent { color: var(--orange); }
-.hdr__callbtn { padding: 8px 16px; font-size: .9rem; flex: none; }
-@media (max-width: 640px) {
-  .hdr__brandtext { display: none; }
+.hdr__row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 16px; }
+.hdr__brand { display: flex; align-items: center; }
+.hdr__logo-img { height: 40px; width: auto; display: block; }
+.hdr__hotline { padding: 10px 18px; font-size: .95rem; font-weight: 700; flex: none; }
+@media (max-width: 480px) {
+  .hdr__hotline { padding: 8px 13px; font-size: .82rem; }
+  .hdr__logo-img { height: 34px; }
 }
 </style>

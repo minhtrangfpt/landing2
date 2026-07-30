@@ -28,7 +28,7 @@ export const provinces: Record<string, Province> = {
     districts: [
       'Hồng Bàng', 'Lê Chân', 'Ngô Quyền', 'Hải An', 'Kiến An',
       'Đồ Sơn', 'Dương Kinh', 'Thủy Nguyên', 'An Dương', 'An Lão',
-      'Kiến Thụy', 'Tiên Lãng', 'Vĩnh Bảo', 'Cát Hải', 'Bạch Long Vĩ',
+      'Kiến Thụy', 'Tiên Lãng', 'Vĩnh Bảo',
     ],
     metaTitle: 'Lắp mạng FPT tại Hải Phòng — Wi-Fi 6 miễn phí, lắp trong ngày | 0931.50.55.56',
     metaDescription:

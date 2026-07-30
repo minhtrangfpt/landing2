@@ -2,20 +2,33 @@
 import type { Province } from '../config/provinces';
 interface Props { province: Province; }
 const { province } = Astro.props;
+const districts = province.districts ?? [];
 ---
 <section class="section section--soft" id="khu-vuc" aria-labelledby="coverage-title">
   <div class="container">
     <div class="section__head">
       <h2 id="coverage-title">Khu vực lắp mạng FPT tại {province.name}</h2>
-      <p>Chúng tôi phục vụ lắp đặt trên toàn bộ các quận/huyện tại {province.name}.</p>
+      <p>Chọn quận/huyện bên dưới để đăng ký — kỹ thuật viên liên hệ tư vấn & lắp trong ngày.</p>
     </div>
     <ul class="districts">
-      {province.districts.map((d) => <li class="districts__item">{d}</li>)}
+      {districts.map((d) => (
+        <li><button class="districts__item" type="button" onclick="window.openLeadForm&&window.openLeadForm()">{d}</button></li>
+      ))}
     </ul>
   </div>
 </section>
 
 <style>
-.districts { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
-.districts__item { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; font-weight: 600; color: var(--navy); }
+.districts { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; padding: 0; }
+.districts li { list-style: none; }
+.districts__item { border: 0; border-radius: 999px; padding: 9px 16px; font-weight: 700; font-family: inherit; font-size: .92rem; cursor: pointer; transition: transform .12s ease, box-shadow .12s ease; }
+.districts__item:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+.districts li:nth-child(8n+1) .districts__item { background: #e8f0fe; color: #1a4a8a; }
+.districts li:nth-child(8n+2) .districts__item { background: #fff3ea; color: #d65a0f; }
+.districts li:nth-child(8n+3) .districts__item { background: #e7f6ec; color: #1e7a4a; }
+.districts li:nth-child(8n+4) .districts__item { background: #fdecec; color: #b03a3a; }
+.districts li:nth-child(8n+5) .districts__item { background: #f1e9fb; color: #5b3a9a; }
+.districts li:nth-child(8n+6) .districts__item { background: #fff6d6; color: #8a6a00; }
+.districts li:nth-child(8n+7) .districts__item { background: #e2f3f3; color: #0d6b6b; }
+.districts li:nth-child(8n+8) .districts__item { background: #fce4f0; color: #9d3a6e; }
 </style>

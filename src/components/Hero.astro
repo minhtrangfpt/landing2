@@ -35,7 +35,6 @@ const perks = [
       {perks.map((p) => <li>{p}</li>)}
     </ul>
     <div class="hero__cta">
-      <a class="btn btn--lg hero__register" href="#dang-ky">📝 Đăng ký nhận ưu đãi</a>
       <a class="btn btn--lg btn--call btn--pulse" href={`tel:${site.phoneRaw}`}>📞 Hotline: {site.phoneDisplay}</a>
     </div>
   </div>
@@ -52,8 +51,6 @@ const perks = [
 .hero__perks { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 24px; font-weight: 600; font-size: .9rem; }
 .hero__perks li { background: rgba(255, 255, 255, 0.15); border-radius: 999px; padding: 6px 12px; }
 .hero__cta { display: flex; flex-direction: column; align-items: stretch; gap: 12px; max-width: 420px; margin: 0 auto; }
-.hero__register { background: #fff; color: var(--orange-dark); }
-.hero__register:hover { background: var(--gray-100); }
 @media (min-width: 640px) {
   .hero__cta { flex-direction: row; justify-content: center; max-width: none; }
   .hero__cta .btn { min-width: 260px; }

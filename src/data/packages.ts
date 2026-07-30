@@ -105,22 +105,22 @@ export const packages: FptPackage[] = [
     group: 'gamer',
     name: 'Internet Meta',
     tagline: 'Băng thông đối xứng 1 Gbps',
-    speed: '1 Gbps / 1 Gbps',
+    speed: '1000 Mbps / 1000 Mbps',
     priceMonthly: 295000, // VERIFY
     image: '/gamer/meta.jpg',
     detailImage: '/gamer/detail-meta.png',
-    features: ['Modem Wi-Fi 6', 'Kết nối đến 25 thiết bị', 'Phù hợp chơi game, livestream'],
+    features: ['Modem Wi-Fi 6', 'Kết nối đến 25 thiết bị'],
   },
   {
     id: 'gamer-fgame',
     group: 'gamer',
     name: 'Internet F-Game',
     tagline: 'Ultra Fast — giảm độ trễ tối đa',
-    speed: '1 Gbps / 300 Mbps',
+    speed: '1000 Mbps / 300 Mbps',
     priceMonthly: 225000, // VERIFY
     image: '/gamer/fgame.jpg',
     detailImage: '/gamer/detail-fgame.png',
-    features: ['Modem Wi-Fi 6', 'Ultra Fast hỗ trợ 50+ tựa game', 'Giảm độ trễ tới 16ms'],
+    features: ['Modem Wi-Fi 6', 'Ultra Fast, giảm độ trễ 16ms'],
     badge: 'GAME',
   },
   {
@@ -128,22 +128,22 @@ export const packages: FptPackage[] = [
     group: 'gamer',
     name: 'Combo Meta',
     tagline: 'Internet Meta + FPT Play Box',
-    speed: '1 Gbps / 1 Gbps',
+    speed: '1000 Mbps / 1000 Mbps',
     priceMonthly: 320000, // VERIFY
     image: '/gamer/combo-meta.jpg',
     detailImage: '/gamer/detail-combo-meta.png',
-    features: ['Modem Wi-Fi 6 + FPT Play Box', 'Gần 120 kênh truyền hình', 'Bản quyền AFF ASEAN Hyundai Cup 2026'],
+    features: ['Modem Wi-Fi 6 + FPT Play Box', 'Xem AFF ASEAN Hyundai Cup 2026 trên FPT Play'],
   },
   {
     id: 'gamer-combo-fgame',
     group: 'gamer',
     name: 'Combo F-Game',
     tagline: 'Internet F-Game + FPT Play + Ultra Fast',
-    speed: '1 Gbps / 300 Mbps',
+    speed: '1000 Mbps / 300 Mbps',
     priceMonthly: 270000, // VERIFY
     image: '/gamer/combo-fgame.jpg',
     detailImage: '/gamer/detail-combo-fgame.png',
-    features: ['Modem Wi-Fi 6 + FPT Play Box', 'Ultra Fast 50+ tựa game', 'Kho phim 4K'],
+    features: ['Modem Wi-Fi 6 + FPT Play Box', 'Xem AFF ASEAN Hyundai Cup 2026 trên FPT Play'],
     badge: 'GAME',
   },
 ];

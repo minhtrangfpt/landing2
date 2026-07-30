@@ -1,6 +1,9 @@
 ---
 import { site } from '../config/site';
 ---
+<button class="fab fab--register" type="button" aria-label="Đăng ký nhận ưu đãi" onclick="window.openLeadForm&&window.openLeadForm()">
+  <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 2.2 1.2 4.2 3.1 5.6-.2 1.1-.7 2.5-1.7 3.5.1 0 .2 0 .3 0 1.7 0 3.5-.6 4.9-1.5 1.1.3 2.3.4 3.4.4 5.5 0 10-3.6 10-8S17.5 3 12 3z"/></svg>
+</button>
 <a class="fab fab--zalo" href={site.zalo} target="_blank" rel="noopener" aria-label="Chat Zalo">💬</a>
 
 <div class="dock" role="navigation" aria-label="Liên hệ nhanh">
@@ -9,13 +12,17 @@ import { site } from '../config/site';
 </div>
 
 <style>
-.fab { position: fixed; right: 16px; bottom: 84px; width: 56px; height: 56px; border-radius: 50%; background: #0a77f7; color: #fff; display: grid; place-items: center; font-size: 1.5rem; box-shadow: var(--shadow-lg); z-index: 60; }
+.fab { position: fixed; right: 16px; width: 56px; height: 56px; border-radius: 50%; color: #fff; display: grid; place-items: center; box-shadow: var(--shadow-lg); z-index: 60; border: 0; cursor: pointer; }
+.fab--zalo { bottom: 84px; background: #0a77f7; font-size: 1.5rem; }
+.fab--register { bottom: 148px; background: var(--orange); animation: fabpulse 1.8s infinite; }
+@keyframes fabpulse { 0% { box-shadow: 0 0 0 0 rgba(238,108,31,.55), 0 6px 20px rgba(0,0,0,.18); } 70% { box-shadow: 0 0 0 16px rgba(238,108,31,0), 0 6px 20px rgba(0,0,0,.18); } 100% { box-shadow: 0 0 0 0 rgba(238,108,31,0), 0 6px 20px rgba(0,0,0,.18); } }
 .dock { position: fixed; left: 0; right: 0; bottom: 0; display: flex; gap: 8px; padding: 8px; background: rgba(255,255,255,.96); border-top: 1px solid var(--line); z-index: 60; }
 .dock__btn { flex: 1; text-align: center; padding: 12px; border-radius: var(--radius-sm); font-weight: 800; }
 .dock__btn--call { background: var(--orange); color: #fff; }
 .dock__btn--zalo { background: #0a77f7; color: #fff; }
 @media (min-width: 821px) {
   .dock { display: none; }
-  .fab { bottom: 24px; }
+  .fab--zalo { bottom: 24px; }
+  .fab--register { bottom: 88px; }
 }
 </style>
