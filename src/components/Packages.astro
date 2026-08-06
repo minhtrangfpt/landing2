@@ -32,40 +32,44 @@ const groups = [
         <h2 id={`${g.id}-title`}>{g.title}</h2>
         <p>{g.sub}</p>
       </div>
-      <div class="pkg-grid">
-        {g.items.map((p) => (
-          <article class:list={['card', 'pkg', { 'pkg--hl': p.highlight }]}>
-            {p.highlight && p.badge && (
-              <span class="pkg__hot"><svg class="pkg__hot-flame" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/></svg>{p.badge}</span>
-            )}
-            {p.image && <img class="pkg__img" src={p.image} alt={p.name} loading="lazy" />}
-            <div class="pkg__body">
-              <h3>{p.name}</h3>
-              <div class="pkg__price">
-                <span class="pkg__amount">{formatVnd(p.priceMonthly)}</span>
-                <span class="pkg__unit">/tháng</span>
-              </div>
-              {p.speed && <span class="pkg-speed-pill">{p.speed}</span>}
-              <ul class="pkg__features">
-                {p.features.slice(0, 3).map((f) => <li>✓ {f}</li>)}
-              </ul>
-              <div class="pkg__btns">
-                <a class="btn btn--fpt btn-block" href="#dang-ky">Đăng ký ngay</a>
-                {p.detailImage && (
-                  <button class="btn btn--soft btn-block pkg__detail-btn" type="button" onclick={`document.getElementById('dlg-${p.id}').showModal()`}>Xem chi tiết</button>
-                )}
-              </div>
-            </div>
-            {p.detailImage && (
-              <dialog id={`dlg-${p.id}`} class="pkg__dlg" aria-label={`Chi tiết ${p.name}`}>
-                <div class="pkg__dlg-inner">
-                  <button class="pkg__close" type="button" autofocus onclick={`document.getElementById('dlg-${p.id}').close()`} aria-label="Đóng">✕</button>
-                  <img src={p.detailImage} alt={`Chi tiết ${p.name}`} />
+      <div class="pkg-carousel" data-carousel>
+        <button class="pkg-nav pkg-nav--prev" type="button" aria-label="Gói trước" data-prev>‹</button>
+        <button class="pkg-nav pkg-nav--next" type="button" aria-label="Gói sau" data-next>›</button>
+        <div class="pkg-grid" data-track>
+          {g.items.map((p) => (
+            <article class:list={['card', 'pkg', { 'pkg--hl': p.highlight }]}>
+              {p.highlight && p.badge && (
+                <span class="pkg__hot"><svg class="pkg__hot-flame" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/></svg>{p.badge}</span>
+              )}
+              {p.image && <img class="pkg__img" src={p.image} alt={p.name} loading="lazy" />}
+              <div class="pkg__body">
+                <h3>{p.name}</h3>
+                <div class="pkg__price">
+                  <span class="pkg__amount">{formatVnd(p.priceMonthly)}</span>
+                  <span class="pkg__unit">/tháng</span>
                 </div>
-              </dialog>
-            )}
-          </article>
-        ))}
+                {p.speed && <span class="pkg-speed-pill">{p.speed}</span>}
+                <ul class="pkg__features">
+                  {p.features.slice(0, 3).map((f) => <li>✓ {f}</li>)}
+                </ul>
+                <div class="pkg__btns">
+                  <a class="btn btn--fpt btn-block" href="#dang-ky">Đăng ký ngay</a>
+                  {p.detailImage && (
+                    <button class="btn btn--soft btn-block pkg__detail-btn" type="button" onclick={`document.getElementById('dlg-${p.id}').showModal()`}>Xem chi tiết</button>
+                  )}
+                </div>
+              </div>
+              {p.detailImage && (
+                <dialog id={`dlg-${p.id}`} class="pkg__dlg" aria-label={`Chi tiết ${p.name}`}>
+                  <div class="pkg__dlg-inner">
+                    <button class="pkg__close" type="button" autofocus onclick={`document.getElementById('dlg-${p.id}').close()`} aria-label="Đóng">✕</button>
+                    <img src={p.detailImage} alt={`Chi tiết ${p.name}`} />
+                  </div>
+                </dialog>
+              )}
+            </article>
+          ))}
+        </div>
       </div>
       {i === 0 && (
         <p class="pkg__note">💡 Giá có thể thay đổi theo chương trình khuyến mãi. <a href={`tel:${site.phoneRaw}`} class="pkg__note-link">Gọi ngay</a> để nhận báo giá mới nhất.</p>
@@ -75,7 +79,47 @@ const groups = [
 ))}
 {province && <span class="visually-hidden">{province.name}</span>}
 
+<script is:inline>
+  (function () {
+    function init() {
+      document.querySelectorAll('[data-carousel]').forEach(function (c) {
+        if (c.__pkgInit) return;
+        c.__pkgInit = true;
+        var track = c.querySelector('[data-track]');
+        var prev = c.querySelector('[data-prev]');
+        var next = c.querySelector('[data-next]');
+        if (!track) return;
+        function step() {
+          var card = track.children[0];
+          var w = card ? card.getBoundingClientRect().width : 280;
+          var gap = parseFloat(getComputedStyle(track).gap) || 16;
+          return w + gap;
+        }
+        if (prev) prev.addEventListener('click', function () { track.scrollBy({ left: -step(), behavior: 'smooth' }); });
+        if (next) next.addEventListener('click', function () { track.scrollBy({ left: step(), behavior: 'smooth' }); });
+        if ('IntersectionObserver' in window) {
+          var hinted = false;
+          var mq = window.matchMedia('(max-width: 768px)');
+          var io = new IntersectionObserver(function (es) {
+            es.forEach(function (e) {
+              if (e.isIntersecting && !hinted && mq.matches) {
+                hinted = true;
+                setTimeout(function () { track.scrollBy({ left: step(), behavior: 'smooth' }); }, 350);
+              }
+            });
+          }, { threshold: 0.4 });
+          io.observe(c);
+        }
+      });
+    }
+    if (document.readyState !== 'loading') init();
+    else document.addEventListener('DOMContentLoaded', init);
+  })();
+</script>
+
 <style>
+.pkg-carousel { position: relative; }
+.pkg-nav { display: none; }
 .pkg-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: stretch; }
 .pkg { padding: 0; display: flex; flex-direction: column; position: relative; overflow: visible; }
 .pkg--hl { border: 2px solid var(--orange); box-shadow: 0 10px 26px rgba(238,108,31,.22); }
@@ -100,5 +144,23 @@ const groups = [
 .pkg__dlg img { display: block; width: 100%; height: auto; border-radius: var(--radius); background: #fff; box-shadow: var(--shadow-lg); }
 .pkg__close { position: absolute; top: -14px; right: -10px; width: 36px; height: 36px; border-radius: 50%; border: 0; background: #fff; color: var(--orange-dark); font-weight: 800; cursor: pointer; box-shadow: var(--shadow-lg); }
 @media (max-width: 900px) { .pkg-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 560px) { .pkg-grid { grid-template-columns: 1fr; } }
+@media (max-width: 768px) {
+  .pkg-grid {
+    display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+    gap: 16px; align-items: stretch; padding: 8px 4px 16px; margin: 0 -4px;
+    -webkit-overflow-scrolling: touch; scrollbar-width: none;
+  }
+  .pkg-grid::-webkit-scrollbar { display: none; }
+  .pkg-grid > .pkg { flex: 0 0 84%; min-width: 84%; scroll-snap-align: center; }
+  .pkg-nav {
+    display: grid; place-items: center; position: absolute; top: 44%; transform: translateY(-50%);
+    z-index: 5; width: 38px; height: 52px; border: 0;
+    background: rgba(255,255,255,.96); color: var(--orange-dark);
+    font-size: 1.7rem; font-weight: 800; line-height: 1;
+    border-radius: 8px; box-shadow: var(--shadow-lg); cursor: pointer; padding: 0;
+  }
+  .pkg-nav:active { background: var(--orange-light); }
+  .pkg-nav--prev { left: -6px; }
+  .pkg-nav--next { right: -6px; }
+}
 </style>
