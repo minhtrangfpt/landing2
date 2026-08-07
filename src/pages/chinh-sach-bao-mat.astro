@@ -1,0 +1,68 @@
+---
+import ProvinceLayout from '../layouts/ProvinceLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getProvince } from '../config/provinces';
+import { site } from '../config/site';
+const province = getProvince('haiphong')!;
+const updated = '31/07/2026';
+---
+<ProvinceLayout province={province}>
+  <Header province={province} />
+  <section class="section">
+    <div class="container privacy">
+      <h1>Chính sách bảo mật</h1>
+      <p class="privacy__updated">Cập nhật lần cuối: {updated}</p>
+
+      <p>Trang web này tôn trọng quyền riêng tư của khách hàng. Chính sách này giải thích thông tin chúng tôi thu thập, cách sử dụng và quyền của bạn đối với dữ liệu cá nhân.</p>
+
+      <h2>1. Thông tin chúng tôi thu thập</h2>
+      <ul>
+        <li><strong>Thông tin bạn cung cấp:</strong> họ tên và số điện thoại khi bạn điền form đăng ký trên trang.</li>
+        <li><strong>Thông tin tự động:</strong> dữ liệu trình duyệt (loại thiết bị, trình duyệt, trang đã xem, nguồn truy cập) thông qua cookie của Google Analytics 4 và Google Ads.</li>
+      </ul>
+
+      <h2>2. Mục đích sử dụng</h2>
+      <ul>
+        <li>Liên hệ tư vấn và triển khai lắp đặt dịch vụ internet FPT.</li>
+        <li>Đo lường lưu lượng truy cập và hiệu quả quảng cáo nhằm cải thiện nội dung.</li>
+      </ul>
+      <p>Chúng tôi <strong>không bán</strong> dữ liệu cá nhân của bạn cho bên thứ ba.</p>
+
+      <h2>3. Cookie & dịch vụ phân tích</h2>
+      <p>Trang sử dụng Google Analytics 4 và Google Ads để đo lường. Bạn có thể tắt cookie trong cài đặt trình duyệt; khi đó một số chức năng đo lường có thể giảm hiệu quả.</p>
+
+      <h2>4. Chia sẻ với bên thứ ba</h2>
+      <ul>
+        <li><strong>Zalo:</strong> khi bạn gửi form, thông tin được chuyển sang Zalo để nhân viên tư vấn liên hệ.</li>
+        <li><strong>FPT Telecom:</strong> dữ liệu liên hệ được sử dụng để triển khai lắp đặt.</li>
+        <li><strong>Google:</strong> phục vụ đo lường và hiển thị quảng cáo.</li>
+      </ul>
+
+      <h2>5. Bảo mật & lưu trữ</h2>
+      <p>Dữ liệu được truy cập giới hạn, chỉ dùng cho mục đích nêu trên và lưu trong thời gian cần thiết cho việc tư vấn, cung cấp dịch vụ.</p>
+
+      <h2>6. Quyền của bạn</h2>
+      <p>Bạn có quyền yêu cầu truy cập, chỉnh sửa hoặc xóa dữ liệu cá nhân mà bạn đã cung cấp. Vui lòng liên hệ theo thông tin bên dưới.</p>
+
+      <h2>7. Liên hệ</h2>
+      <p>
+        Email: <a href="mailto:trangntm35@fpt.com">trangntm35@fpt.com</a><br />
+        Hotline: <a href={`tel:${site.phoneRaw}`}>{site.phoneDisplay}</a><br />
+        Địa chỉ: Đường Bùi Viện, Phường Lê Chân, Hải Phòng
+      </p>
+    </div>
+  </section>
+  <Footer province={province} />
+</ProvinceLayout>
+
+<style>
+.privacy { max-width: 760px; }
+.privacy h1 { margin-bottom: 4px; }
+.privacy__updated { color: var(--muted); font-size: .9rem; margin-bottom: 24px; }
+.privacy h2 { font-size: 1.15rem; margin: 26px 0 8px; }
+.privacy p { margin-bottom: 12px; line-height: 1.7; }
+.privacy ul { margin: 0 0 12px 1.25em; line-height: 1.7; }
+.privacy ul li { margin-bottom: 6px; list-style: disc; }
+.privacy a { color: var(--orange-dark); font-weight: 600; }
+</style>
