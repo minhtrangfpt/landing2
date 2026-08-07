@@ -1,11 +1,11 @@
 const SITE_URL =
   (import.meta.env.SITE_URL as string) ||
   (typeof process !== 'undefined' && process.env && process.env.SITE_URL) ||
-  'https://mangfpt.vn';
+  'https://fpt24h.com.vn';
 
 export const site = {
   brand: 'Mạng FPT',
-  /** Per-deploy via the SITE_URL env var; fallback is the target domain (VERIFY before launch). */
+  /** Per-deploy via the SITE_URL env var; fallback is the live domain. */
   siteUrl: SITE_URL,
   phoneDisplay: '0931.50.55.56',
   phoneRaw: '0931505556',
