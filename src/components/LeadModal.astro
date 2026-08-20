@@ -1,5 +1,5 @@
 ---
-import { site, analytics } from '../config/site';
+import { site, analytics, web3forms } from '../config/site';
 const { adsId, adsLabel } = analytics;
 ---
 <dialog id="leadModal" class="leadmodal" aria-labelledby="leadmodal-title">
@@ -9,7 +9,7 @@ const { adsId, adsLabel } = analytics;
       <h3 id="leadmodal-title">Đăng ký lắp mạng FPT</h3>
       <p>Quý khách hãy để lại thông tin, kỹ thuật viên sẽ tư vấn và lắp đặt trong ngày. Hotline: {site.phoneDisplay}</p>
     </div>
-    <form id="leadModalForm" data-mail="trangntm35@fpt.com" data-ads={adsId} data-ads-label={adsLabel}>
+    <form id="leadModalForm" data-mail="trangntm35@fpt.com" data-ads={adsId} data-ads-label={adsLabel} data-w3key={web3forms.key}>
       <input type="text" name="name" placeholder="Họ và tên" required autocomplete="name" />
       <input type="tel" name="phone" placeholder="Số điện thoại" required autocomplete="tel" />
       <button type="submit" class="btn btn--fpt">Gửi đăng ký</button>
@@ -38,15 +38,41 @@ const { adsId, adsLabel } = analytics;
     if (f) f.addEventListener('submit', function (e) {
       e.preventDefault();
       var name = f.name.value.trim(), phone = f.phone.value.trim();
+      var btn = f.querySelector('button[type="submit"]');
       if (window.gtag) {
         window.gtag('event', 'generate_lead');
         var ads = f.dataset.ads;
         if (ads) window.gtag('event', 'conversion', { send_to: ads + (f.dataset.adsLabel ? '/' + f.dataset.adsLabel : '') });
       }
-      var subject = encodeURIComponent('Dang ky lap mang FPT - ' + name + ' - ' + phone);
-      var body = encodeURIComponent('Ho va ten: ' + name + '\nSo dien thoai: ' + phone + '\n\nVui long lien he tu van va lap dat trong ngay.');
-      window.open('mailto:' + f.dataset.mail + '?subject=' + subject + '&body=' + body, '_self');
-      try { dlg.close(); } catch (e) {}
+      function mailFallback() {
+        var subject = encodeURIComponent('Dang ky lap mang FPT - ' + name + ' - ' + phone);
+        var body = encodeURIComponent('Ho va ten: ' + name + '\nSo dien thoai: ' + phone + '\n\nVui long lien he tu van va lap dat trong ngay.');
+        window.location.href = 'mailto:' + f.dataset.mail + '?subject=' + subject + '&body=' + body;
+        try { dlg.close(); } catch (e) {}
+      }
+      if (!f.dataset.w3key) { mailFallback(); return; }
+      if (btn) { btn.disabled = true; btn.dataset.old = btn.textContent; btn.textContent = 'Đang gửi...'; }
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: f.dataset.w3key,
+          subject: 'Dang ky lap mang FPT - ' + name + ' - ' + phone,
+          from_name: 'Website fpt24h.com.vn',
+          'Ho va ten': name,
+          'So dien thoai': phone
+        })
+      }).then(function (r) { return r.json(); }).then(function (d) {
+        if (d && d.success) {
+          if (btn) { btn.textContent = '✓ Đã gửi!'; btn.style.background = '#16a34a'; }
+          f.reset();
+          setTimeout(function () { try { dlg.close(); } catch (e) {} }, 1200);
+        } else { mailFallback(); }
+      }).catch(function () { mailFallback(); }).finally(function () {
+        setTimeout(function () {
+          if (btn) { btn.disabled = false; btn.textContent = btn.dataset.old || 'Gửi đăng ký'; btn.style.background = ''; }
+        }, 4000);
+      });
     });
   })();
 </script>

@@ -19,3 +19,8 @@ export const analytics = {
   adsId: (import.meta.env.PUBLIC_ADS_ID as string) || '',
   adsLabel: (import.meta.env.PUBLIC_ADS_LABEL as string) || '',
 };
+
+/** Web3Forms access key — silent lead delivery to email (no mailto popup). */
+export const web3forms = {
+  key: (import.meta.env.PUBLIC_WEB3FORMS_KEY as string) || '',
+};
