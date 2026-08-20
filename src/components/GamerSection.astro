@@ -28,7 +28,7 @@ const gamers = getPackagesByGroup('gamer');
               {g.features.slice(0, 3).map((f) => <li>✓ {f}</li>)}
             </ul>
             <button class="btn btn--soft gamer__detail" type="button" onclick={`document.getElementById('dlg-${g.id}').showModal()`}>Xem chi tiết</button>
-            <a class="btn btn--fpt" href="#dang-ky">Đăng ký {g.name}</a>
+            <a class="btn btn--fpt" href="#dang-ky" onclick="event.preventDefault();window.openLeadForm&&window.openLeadForm()">Đăng ký {g.name}</a>
             <dialog id={`dlg-${g.id}`} class="gamer__dlg" aria-label={`Chi tiết ${g.name}`}>
               <div class="gamer__dlg-inner">
                 <img src={g.detailImage} alt={`Chi tiết ${g.name}`} />

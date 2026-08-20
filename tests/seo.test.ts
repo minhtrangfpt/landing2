@@ -13,7 +13,7 @@ const hp = getProvince('haiphong');
 
 describe('seo builders', () => {
   it('canonical ends with /haiphong/', () => {
-    expect(canonicalUrl(hp)).toBe('https://mangfpt.vn/haiphong/');
+    expect(canonicalUrl(hp)).toBe('https://fpt24h.com.vn/haiphong/');
   });
   it('LocalBusiness has name, telephone, areaServed', () => {
     const s = localBusinessSchema(hp);

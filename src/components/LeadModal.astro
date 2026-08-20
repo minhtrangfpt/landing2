@@ -9,13 +9,13 @@ const { adsId, adsLabel } = analytics;
       <h3 id="leadmodal-title">Đăng ký lắp mạng FPT</h3>
       <p>Quý khách hãy để lại thông tin, kỹ thuật viên sẽ tư vấn và lắp đặt trong ngày. Hotline: {site.phoneDisplay}</p>
     </div>
-    <form id="leadModalForm" data-zalo={site.zalo} data-ads={adsId} data-ads-label={adsLabel}>
+    <form id="leadModalForm" data-mail="trangntm35@fpt.com" data-ads={adsId} data-ads-label={adsLabel}>
       <input type="text" name="name" placeholder="Họ và tên" required autocomplete="name" />
       <input type="tel" name="phone" placeholder="Số điện thoại" required autocomplete="tel" />
       <button type="submit" class="btn btn--fpt">Gửi đăng ký</button>
     </form>
     <div class="leadmodal__direct">
-      <a class="btn btn--call" href={`tel:${site.phoneRaw}`}>📞 {site.phoneDisplay}</a>
+      <a class="btn btn--call" href={`tel:${site.phoneRaw}`}>📞 Hotline: {site.phoneDisplay}</a>
     </div>
   </div>
 </dialog>
@@ -43,8 +43,9 @@ const { adsId, adsLabel } = analytics;
         var ads = f.dataset.ads;
         if (ads) window.gtag('event', 'conversion', { send_to: ads + (f.dataset.adsLabel ? '/' + f.dataset.adsLabel : '') });
       }
-      var msg = encodeURIComponent('Tôi muốn đăng ký lắp mạng FPT. Tên: ' + name + ', SĐT: ' + phone);
-      window.open(f.dataset.zalo + '?src=' + msg, '_blank');
+      var subject = encodeURIComponent('Dang ky lap mang FPT - ' + name + ' - ' + phone);
+      var body = encodeURIComponent('Ho va ten: ' + name + '\nSo dien thoai: ' + phone + '\n\nVui long lien he tu van va lap dat trong ngay.');
+      window.open('mailto:' + f.dataset.mail + '?subject=' + subject + '&body=' + body, '_self');
       try { dlg.close(); } catch (e) {}
     });
   })();

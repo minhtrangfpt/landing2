@@ -11,7 +11,7 @@ const { adsId, adsLabel } = analytics;
       <h2 id="cta-title">Đăng ký lắp mạng FPT tại {province.name} ngay hôm nay</h2>
       <p>Để lại thông tin hoặc gọi trực tiếp — kỹ thuật viên sẽ liên hệ tư vấn và lắp trong ngày.</p>
     </div>
-    <form class="cta-form" id="leadForm" data-zalo={site.zalo} data-ads={adsId} data-ads-label={adsLabel}>
+    <form class="cta-form" id="leadForm" data-mail="trangntm35@fpt.com" data-ads={adsId} data-ads-label={adsLabel}>
       <input class="cta-form__input" type="text" name="name" placeholder="Họ và tên" required autocomplete="name" />
       <input class="cta-form__input" type="tel" name="phone" placeholder="Số điện thoại" required autocomplete="tel" />
       <button class="btn btn--call" type="submit">Gửi đăng ký ngay</button>
@@ -33,7 +33,9 @@ const { adsId, adsLabel } = analytics;
         window.gtag('event', 'conversion', { send_to: ads + (f.dataset.adsLabel ? '/' + f.dataset.adsLabel : '') });
       }
     }
-    window.open(f.dataset.zalo + '?src=' + msg, '_blank');
+    var subject = encodeURIComponent('Dang ky lap mang FPT - ' + name + ' - ' + phone);
+    var body = encodeURIComponent('Ho va ten: ' + name + '\nSo dien thoai: ' + phone + '\n\nVui long lien he tu van va lap dat trong ngay.');
+    window.open('mailto:' + f.dataset.mail + '?subject=' + subject + '&body=' + body, '_self');
   });
 </script>
 

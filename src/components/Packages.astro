@@ -53,7 +53,7 @@ const groups = [
                   {p.features.slice(0, 3).map((f) => <li>✓ {f}</li>)}
                 </ul>
                 <div class="pkg__btns">
-                  <a class="btn btn--fpt btn-block" href="#dang-ky">Đăng ký ngay</a>
+                  <a class="btn btn--fpt btn-block" href="#dang-ky" onclick="event.preventDefault();window.openLeadForm&&window.openLeadForm()">Đăng ký ngay</a>
                   {p.detailImage && (
                     <button class="btn btn--soft btn-block pkg__detail-btn" type="button" onclick={`document.getElementById('dlg-${p.id}').showModal()`}>Xem chi tiết</button>
                   )}

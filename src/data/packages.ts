@@ -14,7 +14,7 @@ export interface FptPackage {
   highlight?: boolean;
   badge?: string;
   savings?: string;
-  /** Detail popup image (gamer packages). */
+  /** Detail popup image. */
   detailImage?: string;
 }
 
@@ -26,39 +26,40 @@ export const packages: FptPackage[] = [
     name: 'Gói Internet Giga',
     tagline: 'Phù hợp hộ gia đình nhỏ',
     speed: 'Tốc độ 1000/300 Mbps',
-    priceMonthly: 195000, // VERIFY (trang cũ)
+    priceMonthly: 195000, // VERIFY
     image: '/images/giga.jpg',
-    detailImage: '/images/giga-detail.png',
-    features: ['Trang bị modem Wi-Fi 6', 'Kết nối ≥ 10 thiết bị'],
+    features: ['Modem Wi-Fi 6', 'Kết nối ≥ 10 thiết bị'],
   },
   {
-    id: 'combo-sky',
+    id: 'combo-giga-vvip',
     group: 'family',
-    name: 'Combo Internet + Truyền hình Sky',
-    tagline: 'Internet + FPT Play cho gia đình',
-    speed: 'Tốc độ 1000/1000 Mbps',
-    priceMonthly: 209000, // VERIFY (ndsua mục 8)
-    image: '/images/sky.jpg',
-    detailImage: '/images/sky-detail.png',
+    name: 'Combo Giga V.VIP',
+    tagline: 'Xem Ngoại hạng Anh 4K + Tặng Camera',
+    speed: 'Tốc độ 300/300 Mbps',
+    priceMonthly: 220000, // VERIFY (yeucau5)
+    image: '/images/combo-giga-vvip.jpg',
+    detailImage: '/images/detail-combo-giga-vvip.png',
     features: [
-      'Trang bị modem Wi-Fi 6, kết nối ≥ 15 thiết bị',
-      'Tặng FPT Play Box xem truyền hình chất lượng cao',
+      'Modem Wi-Fi 6, kết nối ≥ 10 thiết bị',
+      'Xem trọn vẹn Ngoại hạng Anh 4K sắc nét',
+      'Nhận thêm Camera miễn phí',
     ],
     highlight: true,
     badge: 'Phổ biến',
   },
   {
-    id: 'combo-ngoai-hang-anh',
+    id: 'combo-sky-vvip',
     group: 'family',
-    name: 'Combo Internet Ngoại hạng Anh',
-    tagline: 'Xem Ngoại hạng Anh bản quyền',
+    name: 'Combo Sky V.VIP',
+    tagline: 'Xem Ngoại hạng Anh 4K + Tặng Camera',
     speed: 'Tốc độ 1000/1000 Mbps',
-    priceMonthly: 239000, // VERIFY (trang cũ)
-    image: '/images/ngoai-hang-anh.jpg',
-    detailImage: '/images/ngoai-hang-anh-detail.png',
+    priceMonthly: 239000, // VERIFY (yeucau5)
+    image: '/images/combo-sky-vvip.jpg',
+    detailImage: '/images/detail-combo-sky-vvip.png',
     features: [
-      'Modem Wi-Fi 6 + FPT Play Box, kết nối ≥ 15 thiết bị',
-      'Xem Ngoại hạng Anh bản quyền trên 2 thiết bị',
+      'Modem Wi-Fi 6, kết nối ≥ 15 thiết bị',
+      'Xem trọn vẹn Ngoại hạng Anh 4K sắc nét',
+      'Nhận thêm Camera miễn phí',
     ],
   },
   // ---------- Gói Doanh nghiệp ----------
@@ -68,10 +69,9 @@ export const packages: FptPackage[] = [
     name: 'Gói Super300 Biz',
     tagline: 'Phù hợp văn phòng nhỏ',
     speed: 'Tốc độ 300 Mbps',
-    priceMonthly: 450000, // VERIFY (trang cũ)
+    priceMonthly: 450000, // VERIFY
     image: '/images/biz-300.jpg',
-    detailImage: '/images/biz-300-detail.png',
-    features: ['Trang bị Modem MikroTik + Access Point', 'Phù hợp văn phòng nhỏ'],
+    features: ['Modem MikroTik + Access Point', 'Phù hợp văn phòng nhỏ'],
   },
   {
     id: 'lux500',
@@ -79,9 +79,8 @@ export const packages: FptPackage[] = [
     name: 'Gói Lux500',
     tagline: 'Băng thông lớn cho công ty',
     speed: 'Tốc độ 500 Mbps',
-    priceMonthly: 800000, // VERIFY (trang cũ)
+    priceMonthly: 800000, // VERIFY
     image: '/images/biz-500.jpg',
-    detailImage: '/images/biz-500-detail.png',
     features: ['Wi-Fi 6 + Access Point', 'Phủ sóng lên đến 125 thiết bị'],
   },
   {
@@ -90,61 +89,53 @@ export const packages: FptPackage[] = [
     name: 'Combo Lux800',
     tagline: 'Internet + Truyền hình doanh nghiệp',
     speed: 'Tốc độ 800 Mbps',
-    priceMonthly: 1075600, // VERIFY (trang cũ)
+    priceMonthly: 1075600, // VERIFY
     image: '/images/biz-800.jpg',
-    detailImage: '/images/biz-800-detail.png',
-    features: [
-      'Wi-Fi 6 + Access Point, gần 120 kênh FPT Play',
-      'Kết nối lên đến 160 thiết bị',
-    ],
+    features: ['Wi-Fi 6 + Access Point, gần 120 kênh FPT Play', 'Kết nối lên đến 160 thiết bị'],
   },
   // ---------- Gói Internet cho game thủ ----------
-  // VERIFY: details from https://fpt.vn/internet/game-thu
-  {
-    id: 'gamer-meta',
-    group: 'gamer',
-    name: 'Internet Meta',
-    tagline: 'Băng thông đối xứng 1 Gbps',
-    speed: '1000 Mbps / 1000 Mbps',
-    priceMonthly: 295000, // VERIFY
-    image: '/gamer/meta.jpg',
-    detailImage: '/gamer/detail-meta.png',
-    features: ['Modem Wi-Fi 6', 'Kết nối đến 25 thiết bị'],
-  },
   {
     id: 'gamer-fgame',
     group: 'gamer',
     name: 'Internet F-Game',
     tagline: 'Ultra Fast — giảm độ trễ tối đa',
     speed: '1000 Mbps / 300 Mbps',
-    priceMonthly: 225000, // VERIFY
-    image: '/gamer/fgame.jpg',
-    detailImage: '/gamer/detail-fgame.png',
+    priceMonthly: 230000, // VERIFY (yeucau5)
+    image: '/images/fgame-new.jpg',
+    detailImage: '/images/detail-fgame-vvip.jpg',
     features: ['Modem Wi-Fi 6', 'Ultra Fast, giảm độ trễ 16ms'],
-    badge: 'GAME',
   },
   {
-    id: 'gamer-combo-meta',
+    id: 'gamer-combo-meta-vvip',
     group: 'gamer',
-    name: 'Combo Meta',
-    tagline: 'Internet Meta + FPT Play Box',
+    name: 'Combo Meta V.VIP',
+    tagline: 'Ngoại hạng Anh 4K + Tặng Camera',
     speed: '1000 Mbps / 1000 Mbps',
-    priceMonthly: 320000, // VERIFY
-    image: '/gamer/combo-meta.jpg',
-    detailImage: '/gamer/detail-combo-meta.png',
-    features: ['Modem Wi-Fi 6 + FPT Play Box', 'Xem AFF ASEAN Hyundai Cup 2026 trên FPT Play'],
+    priceMonthly: 339000, // VERIFY (yeucau5)
+    image: '/images/combo-meta-vvip.jpg',
+    detailImage: '/images/detail-combo-meta-vvip.png',
+    features: [
+      'Modem Wi-Fi 6 tốc độ 1 Gbps',
+      'Xem trọn vẹn Ngoại hạng Anh 4K sắc nét',
+      'Nhận thêm Camera miễn phí',
+    ],
+    highlight: true,
+    badge: 'Phổ biến',
   },
   {
-    id: 'gamer-combo-fgame',
+    id: 'gamer-combo-meta-vvip-f1',
     group: 'gamer',
-    name: 'Combo F-Game',
-    tagline: 'Internet F-Game + FPT Play + Ultra Fast',
-    speed: '1000 Mbps / 300 Mbps',
-    priceMonthly: 270000, // VERIFY
-    image: '/gamer/combo-fgame.jpg',
-    detailImage: '/gamer/detail-combo-fgame.png',
-    features: ['Modem Wi-Fi 6 + FPT Play Box', 'Xem AFF ASEAN Hyundai Cup 2026 trên FPT Play'],
-    badge: 'GAME',
+    name: 'Combo Meta V.VIP F1',
+    tagline: 'Ngoại hạng Anh 4K + Camera + Mesh',
+    speed: '1000 Mbps / 1000 Mbps',
+    priceMonthly: 259000, // VERIFY (yeucau5)
+    image: '/images/combo-meta-vvip-f1.jpg',
+    detailImage: '/images/detail-combo-meta-vvip-f1.png',
+    features: [
+      'Modem Wi-Fi 6 tốc độ 1 Gbps + 1 Mesh',
+      'Xem trọn vẹn Ngoại hạng Anh 4K sắc nét',
+      'Nhận thêm Camera miễn phí',
+    ],
   },
 ];
 
