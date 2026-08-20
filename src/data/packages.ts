@@ -28,6 +28,7 @@ export const packages: FptPackage[] = [
     speed: 'Tốc độ 1000/300 Mbps',
     priceMonthly: 195000, // VERIFY
     image: '/images/giga.jpg',
+    detailImage: '/images/giga-detail.png',
     features: ['Modem Wi-Fi 6', 'Kết nối ≥ 10 thiết bị'],
   },
   {
